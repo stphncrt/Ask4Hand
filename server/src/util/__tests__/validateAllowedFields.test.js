@@ -1,6 +1,6 @@
 import validateAllowedFields from "../validateAllowedFields.js";
 
-describe("validateAllowedFields", () => {
+describe.skip("validateAllowedFields", () => {
   it("Returns an empty string if all fields are allowed", () => {
     expect(validateAllowedFields({ foo: "bar" }, ["foo"])).toBe("");
     expect(

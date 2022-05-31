@@ -1,4 +1,4 @@
-import User, { validateUser } from "../models/User";
+/* import User, { validateUser } from "../models/Worker";
 
 export const addUserToMockDB = async (newUser) => {
   const validationResult = validateUser(newUser);
@@ -26,3 +26,4 @@ export const findUserInMockDB = async (userId) => {
 
   return user;
 };
+ */

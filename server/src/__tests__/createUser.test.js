@@ -24,7 +24,7 @@ afterAll(async () => {
 
 const testUserBase = { name: "John", email: "john@doe.com" };
 
-describe("POST /api/user/create", () => {
+describe.skip("POST /api/user/create", () => {
   it("Should return a bad request if no user object is given", (done) => {
     request
       .post("/api/user/create")

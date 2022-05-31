@@ -22,7 +22,7 @@ afterAll(async () => {
   await closeMockDatabase();
 });
 
-describe("GET /api/user/", () => {
+describe.skip("GET /api/user/", () => {
   it("Should return an empty array if there are no users in the db", (done) => {
     request
       .get("/api/user/")
