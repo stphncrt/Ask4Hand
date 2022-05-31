@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
-import validateAllowedFields from "../util/validateAllowedFields.js";
+//import validateAllowedFields from "../util/validateAllowedFields.js";
 
-const userSchema = new mongoose.Schema({
+const workerSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
 });
 
-const User = mongoose.model("users", userSchema);
+const Worker = mongoose.model("workers", workerSchema);
 
-export const validateUser = (userObject) => {
+/* export const validateUser = (userObject) => {
   const errorList = [];
   const allowedKeys = ["name", "email"];
 
@@ -28,6 +28,6 @@ export const validateUser = (userObject) => {
   }
 
   return errorList;
-};
+}; */
 
-export default User;
+export default Worker;

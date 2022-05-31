@@ -1,6 +1,6 @@
-import express from "express";
+/* import express from "express";
 import mongoose from "mongoose";
-import User, { validateUser } from "./models/User.js";
+import Worker, { validateUser } from "./models/Worker.js";
 
 import { logError } from "./util/logging.js";
 import validationErrorMessage from "./util/validationErrorMessage.js";
@@ -21,7 +21,7 @@ testRouter.post("/seed", async (req, res) => {
     await emptyDatabase();
 
     const data = {
-      users: [
+      workers: [
         {
           name: "Rob",
           email: "rob@hackyourfuture.net",
@@ -30,14 +30,14 @@ testRouter.post("/seed", async (req, res) => {
     };
 
     // Validate users to the database
-    data.users.forEach((user) => {
-      const errorList = validateUser(user);
+    data.workers.forEach((worker) => {
+      const errorList = validateUser(worker);
 
       if (errorList.length > 0) {
         const err = new Error(
           `Invalid user in seed data. Errors: ${validationErrorMessage(
             errorList
-          )}. User attempting to be inserted: ${JSON.stringify(user)}`
+          )}. User attempting to be inserted: ${JSON.stringify(worker)}`
         );
 
         logError(err);
@@ -46,15 +46,15 @@ testRouter.post("/seed", async (req, res) => {
     });
 
     // Add users to the database
-    await User.create(data.users);
+    await Worker.create(data.workers);
 
     // Fetch to add to the return
-    const finalUsers = await User.find();
+    const finalWorkers = await Worker.find();
 
     res.status(201).json({
       success: true,
       data: {
-        users: finalUsers,
+        workers: finalWorkers,
       },
     });
   }
@@ -70,3 +70,4 @@ const emptyDatabase = async () => {
 };
 
 export default testRouter;
+ */

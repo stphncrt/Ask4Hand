@@ -1,11 +1,11 @@
-import User, { validateUser } from "../models/User.js";
+import Worker /* , { validateUser } */ from "../models/Worker.js";
 import { logError } from "../util/logging.js";
-import validationErrorMessage from "../util/validationErrorMessage.js";
+//import validationErrorMessage from "../util/validationErrorMessage.js";
 
 export const getUsers = async (req, res) => {
   try {
-    const users = await User.find();
-    res.status(200).json({ success: true, result: users });
+    const workers = await Worker.find();
+    res.status(200).json({ success: true, result: workers });
   } catch (error) {
     logError(error);
     res
@@ -16,20 +16,20 @@ export const getUsers = async (req, res) => {
 
 export const createUser = async (req, res) => {
   try {
-    const { user } = req.body;
+    const { worker } = req.body;
 
     if (typeof user !== "object") {
       res.status(400).json({
         success: false,
         msg: `You need to provide a 'user' object. Received: ${JSON.stringify(
-          user
+          worker
         )}`,
       });
 
       return;
     }
 
-    const errorList = validateUser(user);
+    /*  const errorList = validateUser(user);
 
     if (errorList.length > 0) {
       res
@@ -39,7 +39,7 @@ export const createUser = async (req, res) => {
       const newUser = await User.create(user);
 
       res.status(201).json({ success: true, user: newUser });
-    }
+    } */
   } catch (error) {
     logError(error);
     res
