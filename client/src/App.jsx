@@ -8,7 +8,6 @@ import UserList from "./pages/User/UserList";
 const App = () => {
   return (
     <>
-      <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/user" element={<UserList />} />
