@@ -4,6 +4,7 @@ import cors from "cors";
 import authRouter from "./routes/authRoutes.js";
 import profileRouter from "./routes/profileRoutes.js";
 import categoriesRouter from "./routes/categoriesRoutes.js";
+import workersRouter from "./routes/workersRoutes.js";
 import cookieParser from "cookie-parser";
 import { verifyToken } from "./middleware/verifyToken.js";
 
@@ -24,5 +25,6 @@ app.use(cookieParser());
 app.use("/api/auth", authRouter);
 app.use("/api/profile", verifyToken, profileRouter);
 app.use("/api/categories", categoriesRouter);
+app.use("/api/worker", workersRouter);
 
 export default app;
