@@ -2,6 +2,11 @@ import express from "express";
 import cors from "cors";
 
 import authRouter from "./routes/authRoutes.js";
+import profileRouter from "./routes/profileRoutes.js";
+import categoriesRouter from "./routes/categoriesRoutes.js";
+import workersRouter from "./routes/workersRoutes.js";
+import cookieParser from "cookie-parser";
+import { verifyToken } from "./middleware/verifyToken.js";
 
 // Create an express server
 const app = express();
@@ -10,6 +15,7 @@ const app = express();
 app.use(express.json());
 // Allow everyone to access our API. In a real application, we would need to restrict this!
 app.use(cors());
+app.use(cookieParser());
 
 /****** Attach routes ******/
 /**
@@ -17,5 +23,8 @@ app.use(cors());
  * As we also host our client code on heroku we want to separate the API endpoints.
  */
 app.use("/api/auth", authRouter);
+app.use("/api/profile", verifyToken, profileRouter);
+app.use("/api/categories", categoriesRouter);
+app.use("/api/worker", workersRouter);
 
 export default app;

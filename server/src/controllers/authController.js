@@ -2,6 +2,7 @@ import Worker from "../models/Worker.js";
 import { logError } from "../util/logging.js";
 import { registerValidation, loginValidation } from "../util/authValidation.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const createWorker = async (req, res) => {
   // validation
@@ -64,6 +65,7 @@ export const loginWorker = async (req, res) => {
       msg: error.details[0].message,
     });
   }
+
   //Checking if worker exists
   const worker = await Worker.findOne({ email: req.body.email });
   if (!worker) {
@@ -72,6 +74,8 @@ export const loginWorker = async (req, res) => {
       msg: "Email is not found",
     });
   }
+
+  //check password
   const validPassword = await bcrypt.compare(
     req.body.password,
     worker.password
@@ -82,5 +86,22 @@ export const loginWorker = async (req, res) => {
       msg: "Invalid password",
     });
   }
-  res.status(200).json({ success: true, result: "Successful Login" });
+
+  //Create token
+  const token = jwt.sign({ id: worker._id }, process.env.TOKEN_KEY, {
+    expiresIn: "1h",
+  });
+  res.cookie("jwt", token, { httpOnly: true, expiresIn: 60 * 60 });
+
+  res.status(200).json({
+    success: true,
+    result: { id: worker._id },
+    message: "Successful Login",
+  });
+};
+
+export const logoutWorker = async (req, res) => {
+  res.cookie("jwt", "", { expiresIn: 1 });
+
+  res.status(200).json({ success: true, result: "Logged out" });
 };
