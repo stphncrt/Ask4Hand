@@ -1,5 +1,5 @@
 import React from "react";
-import  NavBar  from "../../components/Nav";
+import NavBar from "../../components/Nav";
 import TEST_ID from "./Home.testid";
 
 const Home = () => {

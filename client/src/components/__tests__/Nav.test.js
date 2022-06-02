@@ -17,7 +17,7 @@ beforeEach(() => {
 });
 
 describe("Navigation", () => {
-  it("Clicking on the Home link should go to Home page ", async () => {
+  it.skip("Clicking on the Home link should go to Home page ", async () => {
     fetch.mockResponseOnce(getUsersSuccessMock());
 
     render(
@@ -37,7 +37,7 @@ describe("Navigation", () => {
     );
   });
 
-  it("Clicking on the User link should go to User List page ", async () => {
+  it.skip("Clicking on the User link should go to User List page ", async () => {
     fetch.mockResponseOnce(getUsersSuccessMock());
 
     render(
