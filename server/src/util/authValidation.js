@@ -4,7 +4,7 @@ export const registerValidation = (data) => {
   const schema = Joi.object({
     firstName: Joi.string().min(3).max(30).required(),
     lastName: Joi.string().min(3).max(30).required(),
-    title: Joi.string().min(3).max(30).required(),
+    occupationId: Joi.string().required(),
     email: Joi.string().email().required(),
     phoneNumber: Joi.number().required(),
     birthYear: Joi.number().integer().min(1900).max(2013),

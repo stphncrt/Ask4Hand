@@ -56,6 +56,8 @@ export const createWorker = async (req, res) => {
   }
 };
 
+const maxAge = 60 * 60;
+
 export const loginWorker = async (req, res) => {
   // validation
   const { error } = loginValidation(req.body);
@@ -89,9 +91,9 @@ export const loginWorker = async (req, res) => {
 
   //Create token
   const token = jwt.sign({ id: worker._id }, process.env.TOKEN_KEY, {
-    expiresIn: "1h",
+    expiresIn: maxAge,
   });
-  res.cookie("jwt", token, { httpOnly: true, expiresIn: 60 * 60 });
+  res.cookie("token", token, { httpOnly: true });
 
   res.status(200).json({
     success: true,
@@ -100,8 +102,10 @@ export const loginWorker = async (req, res) => {
   });
 };
 
-export const logoutWorker = async (req, res) => {
-  res.cookie("jwt", "", { expiresIn: 1 });
-
-  res.status(200).json({ success: true, result: "Logged out" });
+export const logoutWorker = (req, res) => {
+  res.clearCookie("token");
+  res.status(200).json({
+    success: true,
+    message: "Successful",
+  });
 };
