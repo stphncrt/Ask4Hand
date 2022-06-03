@@ -1,22 +1,34 @@
 import React from "react";
 import styled from "styled-components";
-import BoxComponent from "./CategoryBox";
+import MultiActionAreaCard from "./CategoryBox";
+import homeDecoration from "../../assets/home-decoration.png";
+import repairement from "../../assets/repairement.jpeg";
+import lesson from "../../assets/lesson.png";
+import webDesign from "../../assets/web-design.jpeg";
+import wellness from "../../assets/wellness.jpeg";
+import business from "../../assets/business.jpeg";
 
 function Categories() {
   const top100Films = [
-    { title: "Electrician" },
-    { title: "Painter" },
-    { title: "Floor Layer" },
-    { title: "Plumber" },
-    { title: "Carpenter" },
-    { title: "Repairer" },
+    { name: "Home", url: homeDecoration },
+    { name: "Repairement", url: repairement },
+    { name: "Lesson", url: lesson },
+    { name: "Web-Design", url: webDesign },
+    { name: "Wellness", url: wellness },
+    { name: "Business", url: business },
   ];
   return (
     <>
-      <h3>Categories</h3>
+      <h2 style={{ textAlign: "center" }}>Categories</h2>
       <StyledContainer>
         {top100Films.map((item) => {
-          return <BoxComponent key={item.title} category={item.title} />;
+          return (
+            <MultiActionAreaCard
+              key={item.name}
+              category={item.name}
+              url={item.url}
+            />
+          );
         })}
       </StyledContainer>
     </>
