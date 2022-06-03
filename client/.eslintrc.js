@@ -30,7 +30,7 @@ module.exports = {
   rules: {
     quotes: ["error", "double"],
     "no-console": "error",
-    "react/prop-types": ["off"],
+    "react/prop-types": "off",
   },
   settings: {
     react: {
