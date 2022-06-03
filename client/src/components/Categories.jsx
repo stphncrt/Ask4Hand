@@ -1,33 +1,45 @@
 import React from "react";
 import styled from "styled-components";
-import BoxComponent from "./CategoryBox";
+import MultiActionAreaCard from "./CategoryBox";
+import homeDecoration from "../../assets/home-decoration.png";
+import repairement from "../../assets/repairement.jpeg";
+import lesson from "../../assets/lesson.png";
+import webDesign from "../../assets/web-design.jpeg";
+import wellness from "../../assets/wellness.jpeg";
+import business from "../../assets/business.jpeg";
 
 function Categories() {
-	const top100Films = [
-		{ title: "Electrician", year: 1994 },
-		{ title: "Painter", year: 1972 },
-		{ title: "Floor Layer", year: 1974 },
-		{ title: "Plumber", year: 2008 },
-		{ title: "Carpenter", year: 2008 },
-		{ title: "Repairer", year: 2008 },
-	];
-	return (
-		<>
-			<h3>Categories</h3>
-			<StyledContainer>
-				{top100Films.map((item) => {
-					return <BoxComponent category={item.title} />;
-				})}
-			</StyledContainer>
-		</>
-	);
+  const top100Films = [
+    { name: "Home", url: homeDecoration },
+    { name: "Repairement", url: repairement },
+    { name: "Lesson", url: lesson },
+    { name: "Web-Design", url: webDesign },
+    { name: "Wellness", url: wellness },
+    { name: "Business", url: business },
+  ];
+  return (
+    <>
+      <h2 style={{ textAlign: "center" }}>Categories</h2>
+      <StyledContainer>
+        {top100Films.map((item) => {
+          return (
+            <MultiActionAreaCard
+              key={item.name}
+              category={item.name}
+              url={item.url}
+            />
+          );
+        })}
+      </StyledContainer>
+    </>
+  );
 }
 
 export default Categories;
 export const StyledContainer = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 1rem;
-	height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 30vh;
 `;

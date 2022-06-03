@@ -1,11 +1,26 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
 
-export default function BoxComponent({ category }) {
-	return (
-		<Box component="span" sx={{ p: 2, border: "1px dashed grey" }}>
-			<Button>{category}</Button>
-		</Box>
-	);
+export default function MultiActionAreaCard({ category, url }) {
+  return (
+    <Card sx={{ maxWidth: 345, m: 3 }}>
+      <CardActionArea>
+        <CardMedia
+          style={{ width: 150, height: 100 }}
+          component="img"
+          image={url}
+          alt={category}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div" align="center">
+            {category}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
 }
