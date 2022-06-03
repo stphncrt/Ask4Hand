@@ -1,44 +1,85 @@
 import * as React from "react";
-import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import { Button } from "@mui/material";
 
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-const checkedIcon = <CheckBoxIcon fontSize="small" />;
+const filter = createFilterOptions();
 
-export default function SearchBar() {
-	return (
-		<Autocomplete
-			multiple
-			id="checkboxes-tags-demo"
-			options={top100Films}
-			disableCloseOnSelect
-			getOptionLabel={(option) => option.title}
-			renderOption={(props, option, { selected }) => (
-				<li {...props}>
-					<Checkbox
-						icon={icon}
-						checkedIcon={checkedIcon}
-						style={{ marginRight: 8 }}
-						checked={selected}
-					/>
-					{option.title}
-				</li>
-			)}
-			style={{ width: 500, backgroundColor: "#fff" }}
-			renderInput={(params) => <TextField {...params} label="Checkboxes" placeholder="Favorites" />}
-		/>
-	);
+export default function FreeSoloCreateOption() {
+  const [value, setValue] = React.useState(null);
+
+  return (
+    <>
+      <Autocomplete
+        value={value}
+        onChange={(event, newValue) => {
+          if (typeof newValue === "string") {
+            setValue({
+              title: newValue,
+            });
+          } else if (newValue && newValue.inputValue) {
+            // Create a new value from the user input
+            setValue({
+              title: newValue.inputValue,
+            });
+          } else {
+            setValue(newValue);
+          }
+        }}
+        filterOptions={(options, params) => {
+          const filtered = filter(options, params);
+
+          const { inputValue } = params;
+          // Suggest the creation of a new value
+          const isExisting = options.some(
+            (option) => inputValue === option.title
+          );
+          if (inputValue !== "" && !isExisting) {
+            filtered.push({
+              inputValue,
+              title: `Add "${inputValue}"`,
+            });
+          }
+
+          return filtered;
+        }}
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        id="free-solo-with-text-demo"
+        options={top100Films}
+        getOptionLabel={(option) => {
+          // Value selected with enter, right from the input
+          if (typeof option === "string") {
+            return option;
+          }
+          // Add "xxx" option created dynamically
+          if (option.inputValue) {
+            return option.inputValue;
+          }
+          // Regular option
+          return option.title;
+        }}
+        renderOption={(props, option) => <li {...props}>{option.title}</li>}
+        sx={{ width: 300 }}
+        style={{ width: 500, backgroundColor: "#fff" }}
+        freeSolo
+        renderInput={(params) => (
+          <TextField {...params} label="What service do you need?" />
+        )}
+      />
+      <Button style={{ height: 54, width: 200 }} variant="contained">
+        Get Started
+      </Button>
+    </>
+  );
 }
 
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
-	{ title: "Electrician", year: 1994 },
-	{ title: "Painter", year: 1972 },
-	{ title: "Floor Layer", year: 1974 },
-	{ title: "Plumber", year: 2008 },
-	{ title: "Carpenter", year: 2008 },
-	{ title: "Repairer", year: 2008 },
+  { title: "Electrician" },
+  { title: "Painter" },
+  { title: "Floor Layer" },
+  { title: "Plumber" },
+  { title: "Carpenter" },
+  { title: "Repairer" },
 ];
