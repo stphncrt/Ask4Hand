@@ -45,7 +45,7 @@ export const StyledWrapper = styled.div`
 	flex-direction: row;
 	gap: 5rem;
 	padding: 1rem 6rem;
-	background-color: #f9f8f4;
+	background-color: #1d3557;
 	flex-wrap: wrap;
 	.image {
 		width: 8rem;
@@ -63,13 +63,13 @@ export const StyledLinkContainer = styled.div`
 
 export const StyledLink = styled.a`
 	text-decoration: none;
-	color: #382b86;
+	color: #f1faee;
 	&:hover {
 		text-decoration: underline;
 	}
 `;
 export const StyledTitle = styled.h3`
-	color: #767676;
+	color: #a8dadc;
 	font-weight: 500;
 `;
 export const StyledCompanyLink = styled.div`
