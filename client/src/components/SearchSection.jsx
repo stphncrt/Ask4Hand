@@ -3,19 +3,19 @@ import styled from "styled-components";
 import SearchBar from "./SearchBar";
 import searchBackgroundImage from "../../assets/search-bar-background.jpeg";
 const SearchSection = () => {
-  return (
-    <StyledContainer>
-      <SearchBar />
-    </StyledContainer>
-  );
+	return (
+		<StyledContainer>
+			<SearchBar />
+		</StyledContainer>
+	);
 };
 
 export default SearchSection;
 
 export const StyledContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 54vh;
-  background-image: url(${searchBackgroundImage});
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90vh;
+	background-image: url(${searchBackgroundImage});
 `;
