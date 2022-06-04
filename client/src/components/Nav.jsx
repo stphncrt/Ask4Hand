@@ -13,22 +13,20 @@ export default function ButtonAppBar() {
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
 				<StyledToolbar>
-					<IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+					<IconButton size="large" edge="start" color="primary" aria-label="menu" sx={{ mr: 2 }}>
 						<MenuIcon />
 					</IconButton>
-					<Typography color="#E63946" variant="h6" component="div" sx={{ flexGrow: 1 }}>
+					<Typography color="primary" variant="h4" component="div" sx={{ flexGrow: 1 }}>
 						Ask4Hand
 					</Typography>
-					<StyledButton color="inherit">Register</StyledButton>
-					<StyledButton color="inherit">Login</StyledButton>
+					<Button variant="outlined" sx={{ mr: 2 }}>Register</Button>
+					<Button variant="outlined">Login</Button>
 				</StyledToolbar>
 			</AppBar>
 		</Box>
 	);
 }
 export const StyledToolbar = styled(Toolbar)`
-	background-color: #a8dadc;
+	background-color: #f1faee;
 `;
-export const StyledButton = styled(Button)`
-	color: black;
-`;
+

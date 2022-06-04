@@ -16,6 +16,7 @@ export const StyledContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 90vh;
-	background-image: url(${searchBackgroundImage});
+	height: 60vh;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${searchBackgroundImage});
+	background-repeat: no-repeat;
 `;

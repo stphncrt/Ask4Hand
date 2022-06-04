@@ -65,11 +65,11 @@ export default function FreeSoloCreateOption() {
         style={{ width: 500, backgroundColor: "#fff" }}
         freeSolo
         renderInput={(params) => (
-          <TextField {...params} label="What service do you need?" />
+          <TextField {...params} label="What service do you need?" variant="filled" color="error"/>
         )}
       />
       <Button
-        style={{ height: 54, width: 200, backgroundColor: "#e63946" }}
+        style={{ height: 56, width: 200, backgroundColor: "#e63946" }}
         variant="contained"
       >
         Get Started

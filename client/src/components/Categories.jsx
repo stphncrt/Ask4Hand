@@ -33,6 +33,8 @@ export default Categories;
 export const StyledContainer = styled.div`
 	display: flex;
 	flex-direction: column;
+	padding:1.5rem;
+	background-color:#f1faee;
 	.category {
 		display: flex;
 		flex-direction: row;
