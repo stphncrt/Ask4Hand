@@ -8,14 +8,11 @@ function HowItWorks() {
   return (
     <StyledContainer>
       <h2 className="title">How It Works</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum deserunt
-        expedita assumenda nulla consectetur porro saepe est, tempora earum ea
-        error eos vero distinctio a!
-      </p>
       <div className="stepperWrapper">
         <div className="step">
-          <img src={logoTell} />
+          <div className="imgContainer">
+            <img src={logoTell} />
+          </div>
           <h3>Tell us what you need</h3>
           <p>
             Book & pay online. We’ll match you with a trusted, experienced house
@@ -23,7 +20,9 @@ function HowItWorks() {
           </p>
         </div>
         <div className="step">
-          <img src={logoReview} />
+          <div className="imgContainer">
+            <img src={logoReview} />
+          </div>
           <h3>Review service providers</h3>
           <p>
             Within seconds, you’ll receive expert service providers profile with
@@ -31,7 +30,9 @@ function HowItWorks() {
           </p>
         </div>
         <div className="step">
-          <img src={logoHire} />
+          <div className="imgContainer">
+            <img src={logoHire} />
+          </div>
           <h3>Hire the right pro</h3>
           <p>
             Compare prices, profiles, and reviews, then hire the pro that’s
@@ -48,13 +49,11 @@ export const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 1rem 0.5rem;
+  margin: 0 0.5rem;
   text-align: center;
   justify-content: center;
-  margin-top: 2rem;
-  .title {
-    margin: 0;
-  }
+  background-color:#f1faee;
+
   .stepperWrapper {
     display: flex;
     flex-direction: row;
@@ -69,11 +68,21 @@ export const StyledContainer = styled.div`
     align-items: center;
     justify-content: center;
     p {
-      margin: 0;
       text-align: center;
     }
-    h3 {
-      margin: 0.1rem;
+   
+    .imgContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background-color: #fff;
+      -webkit-box-shadow: 2px 3px 30px rgb(188 207 219 / 65%);
+      -moz-box-shadow: 2px 3px 30px rgba(188, 207, 219, 0.65);
+      box-shadow: 2px 3px 30px rgb(188 207 219 / 65%);
+      line-height: 110px;
     }
   }
 
