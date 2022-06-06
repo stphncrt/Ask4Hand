@@ -40,7 +40,7 @@ export const updateWorker = async (req, res) => {
   worker.email = req.body.email;
   worker.phoneNumber = req.body.phoneNumber;
   worker.birthYear = req.body.birthYear;
-  worker.profileImage = req.body.profileImage;
+  worker.images = req.body.images;
   worker.categoryId = req.body.categoryId;
   worker.description = req.body.description;
   worker.street = req.body.street;

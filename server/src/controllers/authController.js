@@ -32,7 +32,7 @@ export const createWorker = async (req, res) => {
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
     birthYear: req.body.birthYear,
-    profileImage: req.body.profileImage,
+    images: req.body.images,
     categoryId: req.body.categoryId,
     description: req.body.description,
     street: req.body.street,
@@ -93,7 +93,7 @@ export const loginWorker = async (req, res) => {
   const token = jwt.sign({ id: worker._id }, process.env.TOKEN_KEY, {
     expiresIn: maxAge,
   });
-  res.cookie("token", token, { httpOnly: true, maxAge });
+  res.cookie("token", token, { httpOnly: true });
 
   res.status(200).json({
     success: true,
