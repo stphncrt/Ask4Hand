@@ -36,11 +36,11 @@ export const updateWorker = async (req, res) => {
 
   worker.firstName = req.body.firstName;
   worker.lastName = req.body.lastName;
-  worker.title = req.body.title;
+  worker.occupationId = req.body.occupationId;
   worker.email = req.body.email;
   worker.phoneNumber = req.body.phoneNumber;
   worker.birthYear = req.body.birthYear;
-  worker.profileImage = req.body.profileImage;
+  worker.images = req.body.images;
   worker.categoryId = req.body.categoryId;
   worker.description = req.body.description;
   worker.street = req.body.street;

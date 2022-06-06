@@ -28,11 +28,11 @@ export const createWorker = async (req, res) => {
   const worker = new Worker({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    title: req.body.title,
+    occupationId: req.body.occupationId,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
     birthYear: req.body.birthYear,
-    profileImage: req.body.profileImage,
+    images: req.body.images,
     categoryId: req.body.categoryId,
     description: req.body.description,
     street: req.body.street,

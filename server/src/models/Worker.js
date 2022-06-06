@@ -8,7 +8,7 @@ const workerSchema = new mongoose.Schema(
     email: { type: String, required: true, lowercase: true, unique: true },
     phoneNumber: { type: Number, required: true },
     birthYear: { type: Number, required: true },
-    profileImage: { type: String },
+    images: { type: Array },
     categoryId: { type: String, required: true },
     description: { type: String, required: true },
     street: { type: String, required: true },
