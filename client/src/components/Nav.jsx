@@ -19,7 +19,9 @@ export default function ButtonAppBar() {
 					<Typography color="primary" variant="h4" component="div" sx={{ flexGrow: 1 }}>
 						Ask4Hand
 					</Typography>
-					<Button variant="outlined" sx={{ mr: 2 }}>Register</Button>
+					<Button variant="outlined" sx={{ mr: 2 }}>
+						Register
+					</Button>
 					<Button variant="outlined">Login</Button>
 				</StyledToolbar>
 			</AppBar>
@@ -29,4 +31,3 @@ export default function ButtonAppBar() {
 export const StyledToolbar = styled(Toolbar)`
 	background-color: #f1faee;
 `;
-
