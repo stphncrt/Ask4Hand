@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import {
@@ -89,6 +89,17 @@ const RegisterPage = () => {
     },
   });
   const titles = ["repairer", "painter", "electrician"];
+  const [imageList, setImageList] = useState([""]);
+
+  const addImageInputField = () => {
+    setImageList([...imageList, ""]);
+  };
+  const handleImageUrlChange = (index, event) => {
+    const updatedImageList = [...imageList];
+    updatedImageList[index] = event.target.value;
+    setImageList(updatedImageList);
+  };
+
   return (
     <Container className={signUpStyles.wrapper} maxWidth="sm">
       <Typography className={signUpStyles.text}>
@@ -139,7 +150,6 @@ const RegisterPage = () => {
               ))}
             </Select>
           </Grid>
-
           <Grid item xs={12}>
             <TextField
               label="Email"
@@ -162,8 +172,29 @@ const RegisterPage = () => {
               name="phoneNumber"
               error={formik.errors.phoneNumber}
               helperText={formik.errors.phoneNumber}
-          
-            />
+             />
+          </Grid>
+
+          {imageList.map((item, index) => (
+            <Grid item xs={12} key={index}>
+              <TextField
+                label="Image Url"
+                variant="outlined"
+                fullWidth
+                value={item}
+                onChange={(event) => handleImageUrlChange(index, event)}
+                name="imageUrl"
+              />
+            </Grid>
+          ))}
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={addImageInputField}
+            >
+              Add Image
+            </Button>
           </Grid>
           <Grid item xs={12}>
             <InputLabel id="demo-simple-select-label">Category</InputLabel>
@@ -178,8 +209,10 @@ const RegisterPage = () => {
               error={formik.errors.category}
               helperText={formik.errors.category}
             >
-              {titles.map((title) => (
-                <MenuItem value={title}>{title}</MenuItem>
+            {titles.map((title) => (
+                <MenuItem value={title} key={title}>
+                  {title}
+                </MenuItem>
               ))}
             </Select>
           </Grid>
@@ -280,7 +313,6 @@ const RegisterPage = () => {
               type="password"
               error={formik.errors.password}
               helperText={formik.errors.password}
-
             />
           </Grid>
           <Grid item xs={6}>
