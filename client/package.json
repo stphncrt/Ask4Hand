@@ -66,6 +66,7 @@
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^6.0.2",
     "react-swipeable-views": "^0.14.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "yup": "^0.32.11"
   }
 }
