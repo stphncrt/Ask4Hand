@@ -28,62 +28,55 @@ const styleFunc = makeStyles({
 
 const RegisterPage = () => {
   const signUpStyles = styleFunc();
-	const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-	const RegisterValidationSchema = Yup.object({
-		firstName: Yup.string()
-			.max(15, "Must be 15 characters or less")
-			.required("Required"),
-		lastName: Yup.string()
-			.max(20, "Must be 20 characters or less")
-			.required("Required"),
-		title: Yup.string()
-			.required("Required"),
-		email: Yup.string().email("Invalid email address").required("Required"),
-		phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').max(10, "Must be 10 characters or less").required("Required"),
-    category: Yup.string()
-			.required("Required"),
-    desc: Yup.string()
-    .required("Required"),
-    street: Yup.string()
-			.required("Required"),
+  const RegisterValidationSchema = Yup.object({
+    firstName: Yup.string()
+      .max(15, "Must be 15 characters or less")
+      .required("Required"),
+    lastName: Yup.string()
+      .max(20, "Must be 20 characters or less")
+      .required("Required"),
+    title: Yup.string().required("Required"),
+    email: Yup.string().email("Invalid email address").required("Required"),
+    phoneNumber: Yup.string()
+      .matches(phoneRegExp, "Phone number is not valid")
+      .max(10, "Must be 10 characters or less")
+      .required("Required"),
+    category: Yup.string().required("Required"),
+    desc: Yup.string().required("Required"),
     postalCode: Yup.string().required("Required"),
-    city: Yup.string()
-			.required("Required"),
-    hourlyRate: Yup.number()
-			.required("Required"),
-    workRange: Yup.string()
-			.required("Required"),
+    city: Yup.string().required("Required"),
+    hourlyRate: Yup.number().required("Required"),
+    workRange: Yup.string().required("Required"),
     password: Yup.string()
-      .required('No password provided.') 
-      .min(8, 'Password is too short - should be 8 chars minimum.')
-      .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
-      validatePassword: Yup.string()
-      .required('No password provided.') 
-      .min(8, 'Password is too short - should be 8 chars minimum.')
-      .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.')
-
-	})
+      .required("No password provided.")
+      .min(8, "Password is too short - should be 8 chars minimum.")
+      .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+    validatePassword: Yup.string()
+      .required("No password provided.")
+      .min(8, "Password is too short - should be 8 chars minimum.")
+      .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+  });
   const formik = useFormik({
-      initialValues: {
-        firstName: "",
-        lastName: "",
-        title: "",
-        email: "",
-        phoneNumber: "",
-        category: "",
-        desc: "",
-        street: "",
-        postalCode: "",
-        city: "",
-        hourlyRate: "",
-        workRange: "",
-        password: "",
-        validatePassword: "",
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      title: "",
+      email: "",
+      phoneNumber: "",
+      category: "",
+      desc: "",
+      postalCode: "",
+      city: "",
+      hourlyRate: "",
+      workRange: "",
+      password: "",
+      validatePassword: "",
     },
-		validationSchema: RegisterValidationSchema,
-		
-    
+    validationSchema: RegisterValidationSchema,
+
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
@@ -172,7 +165,7 @@ const RegisterPage = () => {
               name="phoneNumber"
               error={formik.errors.phoneNumber}
               helperText={formik.errors.phoneNumber}
-             />
+            />
           </Grid>
 
           {imageList.map((item, index) => (
@@ -209,7 +202,7 @@ const RegisterPage = () => {
               error={formik.errors.category}
               helperText={formik.errors.category}
             >
-            {titles.map((title) => (
+              {titles.map((title) => (
                 <MenuItem value={title} key={title}>
                   {title}
                 </MenuItem>
@@ -232,27 +225,12 @@ const RegisterPage = () => {
               helperText={formik.errors.desc}
             />
           </Grid>
-          <Grid item xs={4}>
-            <TextField
-              id="outlined-multiline-static"
-              label="Street"
-              variant="outlined"
-              fullWidth
-              rows={4}
-              value={formik.values.street}
-              onChange={formik.handleChange}
-              name="street"
-              error={formik.errors.street}
-              helperText={formik.errors.street}
-            />
-          </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <TextField
               id="outlined-multiline-static"
               label="Postal Code"
               variant="outlined"
               fullWidth
-              rows={4}
               value={formik.values.postalCode}
               onChange={formik.handleChange}
               name="postalCode"
@@ -260,13 +238,12 @@ const RegisterPage = () => {
               helperText={formik.errors.postalCode}
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <TextField
               id="outlined-multiline-static"
               label="City"
               variant="outlined"
               fullWidth
-              rows={4}
               value={formik.values.city}
               onChange={formik.handleChange}
               name="city"
