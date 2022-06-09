@@ -54,7 +54,7 @@ export const updateWorker = async (req, res) => {
     res.status(200).json({
       success: true,
       result: updatedWorker,
-      message: "Profile has been updated successfully",
+      msg: "Profile has been updated successfully",
     });
   } catch (error) {
     logError(error);
@@ -72,7 +72,7 @@ export const deleteWorker = async (req, res) => {
     await worker.remove();
     res.status(200).json({
       success: true,
-      message: "Worker has been deleted successfully",
+      msg: "Worker has been deleted successfully",
     });
   } catch (error) {
     logError(error);

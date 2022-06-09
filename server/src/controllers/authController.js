@@ -42,8 +42,10 @@ export const createWorker = async (req, res) => {
     password: hashPassword,
   });
   try {
-    const savedWorker = await worker.save();
-    res.status(200).json({ success: true, result: savedWorker });
+    await worker.save();
+    res
+      .status(201)
+      .json({ success: true, msg: "Worker has registered successfully" });
   } catch (error) {
     logError(error);
     res.status(500).json({
@@ -95,7 +97,7 @@ export const loginWorker = async (req, res) => {
   res.status(200).json({
     success: true,
     result: { id: worker._id },
-    message: "Successful Login",
+    msg: "Successful Login",
   });
 };
 
@@ -103,6 +105,6 @@ export const logoutWorker = (req, res) => {
   res.clearCookie("token");
   res.status(200).json({
     success: true,
-    message: "Successful",
+    msg: "Successful",
   });
 };

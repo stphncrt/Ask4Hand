@@ -28,8 +28,10 @@ export const createCategory = async (req, res) => {
   }
   const category = new Category(req.body);
   try {
-    const savedCategory = await category.save();
-    res.status(200).json({ success: true, result: savedCategory });
+    await category.save();
+    res
+      .status(200)
+      .json({ success: true, msg: "Category has been created successfully" });
   } catch (error) {
     logError(error);
     res.status(500).json({

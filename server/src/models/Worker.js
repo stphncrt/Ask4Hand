@@ -13,8 +13,8 @@ const workerSchema = new mongoose.Schema(
     postalCode: { type: String, required: true },
     city: { type: String, required: true },
     location: {
-      long: { type: Number, required: true },
       lat: { type: Number, required: true },
+      lng: { type: Number, required: true },
     },
     hourlyRate: { type: Number, required: true },
     workRange: { type: Number, required: true },

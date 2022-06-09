@@ -46,8 +46,10 @@ export const createOccupation = async (req, res) => {
   }
   const occupation = new Occupation(req.body);
   try {
-    const savedOccupation = await occupation.save();
-    res.status(200).json({ success: true, result: savedOccupation });
+    await occupation.save();
+    res
+      .status(200)
+      .json({ success: true, msg: "Occupation has created successfully" });
   } catch (error) {
     logError(error);
     res.status(500).json({
