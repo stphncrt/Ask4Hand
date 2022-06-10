@@ -1,13 +1,17 @@
-import * as React from "react";
+import React, { useContext, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import { Button } from "@mui/material";
+import AppContext from "../context/AppContext";
 
 const filter = createFilterOptions();
 
 export default function FreeSoloCreateOption() {
   const [value, setValue] = React.useState(null);
-
+  const { titles, getTitles } = useContext(AppContext);
+  useEffect(() => {
+    getTitles("/occupations");
+  }, []);
   return (
     <>
       <Autocomplete
@@ -15,12 +19,12 @@ export default function FreeSoloCreateOption() {
         onChange={(event, newValue) => {
           if (typeof newValue === "string") {
             setValue({
-              title: newValue,
+              name: newValue,
             });
           } else if (newValue && newValue.inputValue) {
             // Create a new value from the user input
             setValue({
-              title: newValue.inputValue,
+              name: newValue.inputValue,
             });
           } else {
             setValue(newValue);
@@ -32,12 +36,12 @@ export default function FreeSoloCreateOption() {
           const { inputValue } = params;
           // Suggest the creation of a new value
           const isExisting = options.some(
-            (option) => inputValue === option.title
+            (option) => inputValue === option.name
           );
           if (inputValue !== "" && !isExisting) {
             filtered.push({
               inputValue,
-              title: `Add "${inputValue}"`,
+              name: `No result with "${inputValue}"`,
             });
           }
 
@@ -58,14 +62,19 @@ export default function FreeSoloCreateOption() {
             return option.inputValue;
           }
           // Regular option
-          return option.title;
+          return option.name;
         }}
-        renderOption={(props, option) => <li {...props}>{option.title}</li>}
+        renderOption={(props, option) => <li {...props}>{option.name}</li>}
         sx={{ width: 300 }}
         style={{ width: 500, backgroundColor: "#fff" }}
         freeSolo
         renderInput={(params) => (
-          <TextField {...params} label="What service do you need?" variant="filled" color="error"/>
+          <TextField
+            {...params}
+            label="What service do you need?"
+            variant="filled"
+            color="error"
+          />
         )}
       />
       <Button
@@ -77,12 +86,3 @@ export default function FreeSoloCreateOption() {
     </>
   );
 }
-
-const titles = [
-  { title: "Electrician" },
-  { title: "Painter" },
-  { title: "Floor Layer" },
-  { title: "Plumber" },
-  { title: "Carpenter" },
-  { title: "Repairer" },
-];

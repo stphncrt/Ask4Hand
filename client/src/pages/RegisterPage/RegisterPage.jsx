@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import {
@@ -12,6 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import * as Yup from "yup";
+import AppContext from "../../context/AppContext";
 
 const styleFunc = makeStyles({
   wrapper: {
@@ -27,6 +28,10 @@ const styleFunc = makeStyles({
 });
 
 const RegisterPage = () => {
+  const { titles, getTitles } = useContext(AppContext);
+  useEffect(() => {
+    getTitles("/occupations");
+  }, []);
   const signUpStyles = styleFunc();
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -81,7 +86,7 @@ const RegisterPage = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-  const titles = ["repairer", "painter", "electrician"];
+
   const [imageList, setImageList] = useState([""]);
 
   const addImageInputField = () => {
@@ -138,8 +143,8 @@ const RegisterPage = () => {
               error={formik.errors.title}
               helperText={formik.errors.title}
             >
-              {titles.map((title) => (
-                <MenuItem value={title}>{title}</MenuItem>
+              {titles?.map((title) => (
+                <MenuItem value={title.name}>{title.name}</MenuItem>
               ))}
             </Select>
           </Grid>
@@ -202,7 +207,7 @@ const RegisterPage = () => {
               error={formik.errors.category}
               helperText={formik.errors.category}
             >
-              {titles.map((title) => (
+              {titles?.map((title) => (
                 <MenuItem value={title} key={title}>
                   {title}
                 </MenuItem>
