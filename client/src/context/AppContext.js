@@ -4,17 +4,17 @@ import axios from "axios";
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [occupations, setOccupations] = useState();
+  const [titles, setTitles] = useState();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const getOccupations = async (endpoint) => {
+  const getTitles = async (endpoint) => {
     try {
       setIsLoading(true);
       const response = await axios.get(
         `${process.env.BASE_SERVER_URL}/api${endpoint}`
       );
-      setOccupations(response.data.result);
+      setTitles(response.data.result);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -25,10 +25,10 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        occupations,
+        titles,
         error,
         isLoading,
-        getOccupations,
+        getTitles,
       }}
     >
       {children}
