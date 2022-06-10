@@ -28,7 +28,26 @@ const styleFunc = makeStyles({
 });
 
 const RegisterPage = () => {
-  const { titles, getTitles } = useContext(AppContext);
+  const { titles, getTitles, postWorker } = useContext(AppContext);
+//   const dataJson = {
+//     firstName: "xxx",
+//     lastName: "yyy",
+//     occupationId:"6299fe16219807baef304303",
+//     email:"xxx@gmail.com",
+//     phoneNumber:"1023356789",
+//     images:["https://images.unsplash.com/photo-1482731215275-a1f151646268?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80","https://images.unsplash.com/photo-1482731215275-a1f151646268?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"],
+//     categoryId:"6299f9e0219807baef3042cd",
+//     description:"Lorem ipsulum...",
+//     postalCode:"1067 KM",
+//     city:"Lahey",
+//     location: {
+//       lng: 1231.5,
+//       lat: 12345.4
+//         },
+//     hourlyRate: 20,
+//     workRange:30,
+//     password: "1234test"
+// }
   useEffect(() => {
     getTitles("/occupations");
   }, []);
@@ -43,14 +62,14 @@ const RegisterPage = () => {
     lastName: Yup.string()
       .max(20, "Must be 20 characters or less")
       .required("Required"),
-    title: Yup.string().required("Required"),
+    title: Yup.string(),
     email: Yup.string().email("Invalid email address").required("Required"),
     phoneNumber: Yup.string()
       .matches(phoneRegExp, "Phone number is not valid")
       .max(10, "Must be 10 characters or less")
       .required("Required"),
-    category: Yup.string().required("Required"),
-    desc: Yup.string().required("Required"),
+    category: Yup.string(),
+    description: Yup.string().required("Required"),
     postalCode: Yup.string().required("Required"),
     city: Yup.string().required("Required"),
     hourlyRate: Yup.number().required("Required"),
@@ -58,32 +77,44 @@ const RegisterPage = () => {
     password: Yup.string()
       .required("No password provided.")
       .min(8, "Password is too short - should be 8 chars minimum.")
-      .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+      .matches(/[a-z]/, "Password must have a lowercase letter")
+      .matches(/[A-Z]/, "Password must have a uppercase letter"),
+      // .matches(/\d+/, "Password must have a number")
+      // .matches(/[!?.*@$#%&^()-+]+/, "Password must have a special character"),
+    
     validatePassword: Yup.string()
       .required("No password provided.")
-      .min(8, "Password is too short - should be 8 chars minimum.")
-      .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+      .oneOf([Yup.ref("password")], "Passwords does not match"),
   });
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      title: "",
-      email: "",
-      phoneNumber: "",
-      category: "",
-      desc: "",
-      postalCode: "",
-      city: "",
-      hourlyRate: "",
-      workRange: "",
-      password: "",
-      validatePassword: "",
+      firstName: "asd",
+      lastName: "asd",
+      occupationId: "",
+      email: "asd@gmail.com",
+      phoneNumber: "1234567891",
+      description: "zzzzzzzzzz",
+      postalCode: "1112zd",
+      city: "amsterdam",
+      hourlyRate: "5",
+      workRange: "23",
+      password: "Asdf1234",
+      validatePassword: "Asdf1234",
     },
     validationSchema: RegisterValidationSchema,
+    
+    
+  
 
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: () => {
+      const newValues = formik.values
+      newValues.categoryId = titles.find(title => title._id === formik.values.occupationId )?.categoryId
+      delete newValues.validatePassword
+      newValues.location = {
+              lng: 1231.5,
+              lat: 12345.4
+                }
+      postWorker("/auth/register", newValues)
     },
   });
 
@@ -92,6 +123,7 @@ const RegisterPage = () => {
   const addImageInputField = () => {
     setImageList([...imageList, ""]);
   };
+
   const handleImageUrlChange = (index, event) => {
     const updatedImageList = [...imageList];
     updatedImageList[index] = event.target.value;
@@ -104,6 +136,7 @@ const RegisterPage = () => {
         Pleaser enter your credentials to get registered..
       </Typography>
       <form onSubmit={formik.handleSubmit}>
+        {JSON.stringify(formik.errors)}
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <TextField
@@ -133,18 +166,17 @@ const RegisterPage = () => {
             <InputLabel id="demo-simple-select-label">Title</InputLabel>
             <Select
               labelId="demo-simple-select-label"
-              id="demo-simple-select"
               variant="outlined"
-              value="title"
+              value={formik.values.occupationId}
               label="title"
-              name="title"
+              name="occupationId"
               onChange={formik.handleChange}
               fullWidth
-              error={formik.errors.title}
-              helperText={formik.errors.title}
+              error={formik.errors.occupationId}
+              helperText={formik.errors.occupationId}
             >
               {titles?.map((title) => (
-                <MenuItem value={title.name}>{title.name}</MenuItem>
+                <MenuItem value={title._id}>{title.name}</MenuItem>
               ))}
             </Select>
           </Grid>
@@ -194,7 +226,7 @@ const RegisterPage = () => {
               Add Image
             </Button>
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <InputLabel id="demo-simple-select-label">Category</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -213,7 +245,7 @@ const RegisterPage = () => {
                 </MenuItem>
               ))}
             </Select>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12}>
             <TextField
               id="outlined-multiline-static"
@@ -223,11 +255,11 @@ const RegisterPage = () => {
               multiline
               rows={4}
               defaultValue="Describe Your Job"
-              value={formik.values.desc}
+              value={formik.values.description}
               onChange={formik.handleChange}
-              name="desc"
-              error={formik.errors.desc}
-              helperText={formik.errors.desc}
+              name="description"
+              error={formik.errors.description}
+              helperText={formik.errors.description}
             />
           </Grid>
           <Grid item xs={6}>
@@ -299,7 +331,7 @@ const RegisterPage = () => {
           </Grid>
           <Grid item xs={6}>
             <TextField
-              label="Validate Password"
+              label="Confirm Password"
               variant="outlined"
               fullWidth
               value={formik.values.validatePassword}
@@ -317,6 +349,7 @@ const RegisterPage = () => {
           </Grid>
         </Grid>
       </form>
+      
     </Container>
   );
 };
