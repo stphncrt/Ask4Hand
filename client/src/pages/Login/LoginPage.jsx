@@ -47,7 +47,6 @@ const LoginPage = () => {
     },
     validationSchema: LoginValidationSchema,
     onSubmit: (values) => {
-      console.log(values);
       postWorker("/auth/login", values);
     },
   });
