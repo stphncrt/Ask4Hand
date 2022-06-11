@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
+import AppContext from "../../context/AppContext";
+
 import {
   Button,
   TextField,
   Grid,
   Container,
-  Select,
-  MenuItem,
-  InputLabel,
   Typography,
 } from "@mui/material";
 import * as Yup from "yup";
@@ -28,6 +27,7 @@ const styleFunc = makeStyles({
 });
 
 const LoginPage = () => {
+  const { postWorker } = useContext(AppContext);
   const signUpStyles = styleFunc();
 
   const LoginValidationSchema = Yup.object({
@@ -48,6 +48,7 @@ const LoginPage = () => {
     validationSchema: LoginValidationSchema,
     onSubmit: (values) => {
       console.log(values);
+      postWorker("/auth/login", values);
     },
   });
 
