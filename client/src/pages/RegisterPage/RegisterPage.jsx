@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import * as Yup from "yup";
 import AppContext from "../../context/AppContext";
+import { getlatlng } from "../../api/getlatlng";
 
 const styleFunc = makeStyles({
   wrapper: {
@@ -29,25 +30,7 @@ const styleFunc = makeStyles({
 
 const RegisterPage = () => {
   const { titles, getTitles, postWorker } = useContext(AppContext);
-//   const dataJson = {
-//     firstName: "xxx",
-//     lastName: "yyy",
-//     occupationId:"6299fe16219807baef304303",
-//     email:"xxx@gmail.com",
-//     phoneNumber:"1023356789",
-//     images:["https://images.unsplash.com/photo-1482731215275-a1f151646268?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80","https://images.unsplash.com/photo-1482731215275-a1f151646268?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"],
-//     categoryId:"6299f9e0219807baef3042cd",
-//     description:"Lorem ipsulum...",
-//     postalCode:"1067 KM",
-//     city:"Lahey",
-//     location: {
-//       lng: 1231.5,
-//       lat: 12345.4
-//         },
-//     hourlyRate: 20,
-//     workRange:30,
-//     password: "1234test"
-// }
+
   useEffect(() => {
     getTitles("/occupations");
   }, []);
@@ -79,9 +62,9 @@ const RegisterPage = () => {
       .min(8, "Password is too short - should be 8 chars minimum.")
       .matches(/[a-z]/, "Password must have a lowercase letter")
       .matches(/[A-Z]/, "Password must have a uppercase letter"),
-      // .matches(/\d+/, "Password must have a number")
-      // .matches(/[!?.*@$#%&^()-+]+/, "Password must have a special character"),
-    
+    // .matches(/\d+/, "Password must have a number")
+    // .matches(/[!?.*@$#%&^()-+]+/, "Password must have a special character"),
+
     validatePassword: Yup.string()
       .required("No password provided.")
       .oneOf([Yup.ref("password")], "Passwords does not match"),
@@ -102,19 +85,20 @@ const RegisterPage = () => {
       validatePassword: "Asdf1234",
     },
     validationSchema: RegisterValidationSchema,
-    
-    
-  
 
-    onSubmit: () => {
-      const newValues = formik.values
-      newValues.categoryId = titles.find(title => title._id === formik.values.occupationId )?.categoryId
-      delete newValues.validatePassword
-      newValues.location = {
-              lng: 1231.5,
-              lat: 12345.4
-                }
-      postWorker("/auth/register", newValues)
+    onSubmit: async (values) => {
+      try {
+        const location = await getlatlng(values.postalCode, values.city);
+        const newValues = { ...values, location };
+        newValues.categoryId = titles.find(
+          (title) => title._id === formik.values.occupationId
+        )?.categoryId;
+        delete newValues.validatePassword,
+          postWorker("/auth/register", newValues);
+        console.log(newValues);
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
@@ -136,7 +120,6 @@ const RegisterPage = () => {
         Pleaser enter your credentials to get registered..
       </Typography>
       <form onSubmit={formik.handleSubmit}>
-        {JSON.stringify(formik.errors)}
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <TextField
@@ -349,7 +332,6 @@ const RegisterPage = () => {
           </Grid>
         </Grid>
       </form>
-      
     </Container>
   );
 };
