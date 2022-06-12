@@ -5,6 +5,7 @@ import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
 import { CssBaseline } from "@mui/material";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import LoginPage from "./pages/Login/LoginPage";
 import ButtonAppBar from "./components/Nav";
 import { AppProvider } from "./context/AppContext";
 
@@ -16,6 +17,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/user" element={<UserList />} />
           <Route path="/user/create" element={<CreateUser />} />
         </Routes>
