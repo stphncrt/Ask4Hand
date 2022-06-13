@@ -93,10 +93,10 @@ export const loginWorker = async (req, res) => {
     expiresIn: maxAge,
   });
   res.cookie("token", token, { httpOnly: true });
-
+  delete worker.password;
   res.status(200).json({
     success: true,
-    result: { id: worker._id },
+    result: { worker },
     msg: "Successful Login",
   });
 };

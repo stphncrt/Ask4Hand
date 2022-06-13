@@ -1,11 +1,14 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [titles, setTitles] = useState();
-  const [result, setResult] = useState();
+  const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,10 +33,14 @@ export const AppProvider = ({ children }) => {
         `${process.env.BASE_SERVER_URL}/api${endpoint}`,
         data
       );
-      setResult(response.data);
-      console.log(response.data);
+      setUser(response?.data?.result?.worker);
+      toast.success(response?.data?.msg);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (err) {
       setError(err.message);
+      toast.error(err?.response?.data?.msg || "Something went wrong!");
     } finally {
       setIsLoading(false);
     }
@@ -45,6 +52,7 @@ export const AppProvider = ({ children }) => {
         titles,
         error,
         isLoading,
+        user,
         getTitles,
         postWorker,
       }}

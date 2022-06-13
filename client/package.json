@@ -60,6 +60,7 @@
     "@mui/styled-engine-sc": "^5.8.0",
     "axios": "^0.27.2",
     "formik": "^2.2.9",
+    "js-cookie": "^3.0.1",
     "mui": "^0.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
@@ -67,6 +68,7 @@
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^6.0.2",
     "react-swipeable-views": "^0.14.0",
+    "react-toastify": "^9.0.4",
     "styled-components": "^5.3.5",
     "yup": "^0.32.11"
   }

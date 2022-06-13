@@ -8,8 +8,10 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import AppContext from "../context/AppContext";
 
 export default function ButtonAppBar() {
+  const { user } = React.useContext(AppContext);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -31,13 +33,20 @@ export default function ButtonAppBar() {
           >
             Ask4Hand
           </Typography>
-
-          <StyledButton to="/register" variant="outlined" sx={{ mr: 2 }}>
-            Register
-          </StyledButton>
-          <StyledButton to="/login" variant="outlined">
-            Login
-          </StyledButton>
+          {!user ? (
+            <>
+              <StyledButton to="/register" variant="outlined" sx={{ mr: 2 }}>
+                Register
+              </StyledButton>
+              <StyledButton to="/login" variant="outlined">
+                Login
+              </StyledButton>
+            </>
+          ) : (
+            <Typography color="primary" variant="h4" component="div">
+              {user.firstName} {user.lastName}
+            </Typography>
+          )}
         </StyledToolbar>
       </AppBar>
     </Box>
