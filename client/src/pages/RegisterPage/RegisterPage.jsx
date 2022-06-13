@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import * as Yup from "yup";
 import AppContext from "../../context/AppContext";
-import { getlatlng } from "../../api/getlatlng";
+import { getLatLng } from "../../api/GetLatLng";
 
 const styleFunc = makeStyles({
   wrapper: {
@@ -88,7 +88,7 @@ const RegisterPage = () => {
 
     onSubmit: async (values) => {
       try {
-        const location = await getlatlng(values.postalCode, values.city);
+        const location = await getLatLng(values.postalCode, values.city);
         const newValues = { ...values, location };
         newValues.categoryId = titles.find(
           (title) => title._id === formik.values.occupationId
