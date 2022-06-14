@@ -8,7 +8,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const navigate = useNavigate();
   const [titles, setTitles] = useState();
-  const [user, setUser] = useState(null);
+  const [worker, setWorker] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,7 +33,7 @@ export const AppProvider = ({ children }) => {
         `${process.env.BASE_SERVER_URL}/api${endpoint}`,
         data
       );
-      setUser(response?.data?.result?.worker);
+      setWorker(response?.data?.result?.worker);
       toast.success(response?.data?.msg);
       setTimeout(() => {
         navigate("/");
@@ -52,7 +52,7 @@ export const AppProvider = ({ children }) => {
         titles,
         error,
         isLoading,
-        user,
+        worker,
         getTitles,
         postWorker,
       }}

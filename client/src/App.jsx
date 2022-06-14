@@ -8,7 +8,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/Login/LoginPage";
 import ButtonAppBar from "./components/Nav";
 import { AppProvider } from "./context/AppContext";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
