@@ -3,13 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import AppContext from "../../context/AppContext";
 
-import {
-  Button,
-  TextField,
-  Grid,
-  Container,
-  Typography,
-} from "@mui/material";
+
+import { Button, TextField, Grid, Container, Typography } from "@mui/material";
 import * as Yup from "yup";
 
 const styleFunc = makeStyles({
@@ -46,8 +41,12 @@ const LoginPage = () => {
       password: "",
     },
     validationSchema: LoginValidationSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, props) => {
       postWorker("/auth/login", values);
+      setTimeout(() => {
+        props.resetForm();
+        props.setSubmitting(false);
+      }, 2000);
     },
   });
 
@@ -91,8 +90,14 @@ const LoginPage = () => {
             </Grid>
           ) : null}
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary" fullWidth>
-              Login
+            <Button
+              type="submit"
+              disabled={formik.isSubmitting}
+              variant="contained"
+              color="primary"
+              fullWidth
+            >
+              {formik.isSubmitting ? "Checking" : "Login"}
             </Button>
           </Grid>
         </Grid>

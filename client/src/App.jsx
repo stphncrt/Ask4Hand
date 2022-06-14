@@ -8,11 +8,24 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/Login/LoginPage";
 import ButtonAppBar from "./components/Nav";
 import { AppProvider } from "./context/AppContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
     <AppProvider>
       <CssBaseline>
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <ButtonAppBar />
         <Routes>
           <Route path="/" element={<Home />} />
