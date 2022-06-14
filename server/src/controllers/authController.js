@@ -43,13 +43,20 @@ export const createWorker = async (req, res) => {
   });
   try {
     await worker.save();
-    res
-      .status(201)
-      .json({ success: true, msg: "Worker has registered successfully" });
+    const token = jwt.sign({ id: worker._id }, process.env.TOKEN_KEY, {
+      expiresIn: maxAge,
+    });
+    res.cookie("token", token, { httpOnly: true });
+    res.status(201).json({
+      success: true,
+      result: { worker },
+      msg: "Worker has been registered successfully",
+    });
   } catch (error) {
     logError(error);
     res.status(500).json({
       success: false,
+
       msg: "Unable to create worker, try again later",
     });
   }
@@ -105,6 +112,7 @@ export const logoutWorker = (req, res) => {
   res.clearCookie("token");
   res.status(200).json({
     success: true,
-    msg: "Successful",
+    result: null,
+    msg: "Successful Logout",
   });
 };
