@@ -13,33 +13,33 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-
-	return (
-		<AppProvider>
-			<CssBaseline>
-				<ToastContainer
-					position="top-center"
-					autoClose={2000}
-					hideProgressBar={false}
-					newestOnTop={false}
-					closeOnClick
-					rtl={false}
-					pauseOnFocusLoss
-					draggable
-					pauseOnHover
-				/>
-				<ButtonAppBar />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/register" element={<RegisterPage />} />
-					<Route path="/login" element={<LoginPage />} />
-					<Route path="/searchPage" element={<SearchPage />} />
-					<Route path="/user" element={<UserList />} />
-					<Route path="/user/create" element={<CreateUser />} />
-				</Routes>
-			</CssBaseline>
-		</AppProvider>
-	);
+  return (
+    <AppProvider>
+      <CssBaseline>
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <ButtonAppBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/searchPage" element={<SearchPage />} />
+          <Route path="/searchPage/:occupationId" element={<SearchPage />} />
+          <Route path="/user" element={<UserList />} />
+          <Route path="/user/create" element={<CreateUser />} />
+        </Routes>
+      </CssBaseline>
+    </AppProvider>
+  );
 };
 
 export default App;

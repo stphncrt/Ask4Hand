@@ -8,6 +8,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const navigate = useNavigate();
   const [titles, setTitles] = useState();
+  const [workerList, setWorkerList] = useState(null);
   const [worker, setWorker] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -65,16 +66,32 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const getWorkerByTitle = async (endpoint) => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get(
+        `${process.env.BASE_SERVER_URL}/api/worker/${endpoint}`
+      );
+      setWorkerList(response.data.result);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
         titles,
         error,
         isLoading,
+        workerList,
         worker,
         logoutWorker,
         getTitles,
         postWorker,
+        getWorkerByTitle,
       }}
     >
       {children}
