@@ -1,20 +1,29 @@
 import React, { useEffect, useContext } from "react";
 import AppContext from "../../context/AppContext";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import TitleCheckBox from "../../components/TitleCheckBox";
 
 function SearchPage() {
-  const params = useParams();
-  const { occupationId } = params;
-  const { workerList, getWorkerByTitle, isLoading } = useContext(AppContext);
+  const location = useLocation().state;
+  const { workerList, getWorkerByTitle, getWorkerByCategory, isLoading } =
+    useContext(AppContext);
+
   useEffect(() => {
-    getWorkerByTitle(`/search/${occupationId}`);
+    if (location.categoryId) {
+      getWorkerByCategory(`/find/${location.categoryId}`);
+    }
+    if (location.occupationId) {
+      getWorkerByTitle(`/search/${location.occupationId}`);
+    }
   }, []);
 
   return (
     <StyledWrapper>
-      <TitleCheckBox occupationId={occupationId} />
+      <TitleCheckBox
+        occupationId={location.occupationId}
+        categoryId={location.categoryId}
+      />
       <div>
         {isLoading ? (
           <h3>Loading...</h3>

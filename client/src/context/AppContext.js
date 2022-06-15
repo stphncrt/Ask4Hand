@@ -8,6 +8,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const navigate = useNavigate();
   const [titles, setTitles] = useState();
+  const [categories, setCategories] = useState();
   const [workerList, setWorkerList] = useState(null);
   const [worker, setWorker] = useState(null);
   const [error, setError] = useState(null);
@@ -20,6 +21,20 @@ export const AppProvider = ({ children }) => {
         `${process.env.BASE_SERVER_URL}/api${endpoint}`
       );
       setTitles(response.data.result);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getCategories = async (endpoint) => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get(
+        `${process.env.BASE_SERVER_URL}/api${endpoint}`
+      );
+      setCategories(response.data.result);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -80,18 +95,35 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const getWorkerByCategory = async (endpoint) => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get(
+        `${process.env.BASE_SERVER_URL}/api/worker/${endpoint}`
+      );
+      setWorkerList(response.data.result);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
         titles,
+        categories,
         error,
         isLoading,
         workerList,
         worker,
         logoutWorker,
         getTitles,
+        getCategories,
         postWorker,
         getWorkerByTitle,
+        getWorkerByCategory,
       }}
     >
       {children}

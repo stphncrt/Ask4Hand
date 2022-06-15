@@ -1,46 +1,51 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import MultiActionAreaCard from "./CategoryBox";
-import homeDecoration from "../../assets/home-decoration.png";
+import AppContext from "../context/AppContext";
+/* import homeDecoration from "../../assets/home-decoration.png";
 import repairement from "../../assets/repairement.jpeg";
 import lesson from "../../assets/lesson.png";
 import webDesign from "../../assets/web-design.jpeg";
 import wellness from "../../assets/wellness.jpeg";
-import business from "../../assets/business.jpeg";
+import business from "../../assets/business.jpeg"; */
 
 function Categories() {
-	const categories = [
-		{ name: "Home", url: homeDecoration },
-		{ name: "Repairement", url: repairement },
-		{ name: "Lesson", url: lesson },
-		{ name: "Web-Design", url: webDesign },
-		{ name: "Wellness", url: wellness },
-		{ name: "Business", url: business },
-	];
-	return (
-		<StyledContainer>
-			<h2 style={{ textAlign: "center" }}>Categories</h2>
-			<div className="category">
-				{categories.map((item) => {
-					return <MultiActionAreaCard key={item.name} category={item.name} url={item.url} />;
-				})}
-			</div>
-		</StyledContainer>
-	);
+  const { categories, getCategories, isLoading } = useContext(AppContext);
+
+  useEffect(() => {
+    getCategories("/categories");
+  }, []);
+
+  return (
+    <StyledContainer>
+      <h2 style={{ textAlign: "center" }}>Categories</h2>
+      <div className="category">
+        {isLoading ? (
+          <h3>Loading..</h3>
+        ) : (
+          categories?.map((category) => {
+            return (
+              <MultiActionAreaCard key={category._id} category={category} />
+            );
+          })
+        )}
+      </div>
+    </StyledContainer>
+  );
 }
 
 export default Categories;
 export const StyledContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	padding:1.5rem;
-	background-color:#f1faee;
-	.category {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		gap: 1.4rem;
-		align-items: center;
-		justify-content: center;
-	}
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: #f1faee;
+  .category {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    align-items: center;
+    justify-content: center;
+  }
 `;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -8,9 +8,15 @@ import styled from "styled-components";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-export default function CheckboxLabels({ occupationId }) {
+export default function CheckboxLabels({ occupationId, categoryId }) {
   const { titles, getTitles, isLoading } = useContext(AppContext);
-  console.log(titles);
+  const [city, setCity] = useState("");
+  const [checkedTitles, setCheckedTitles] = useState([]);
+
+  const handleFilterClick = () => {
+    console.log(city, checkedTitles);
+  };
+
   useEffect(() => {
     getTitles("/occupations");
   }, []);
@@ -24,11 +30,15 @@ export default function CheckboxLabels({ occupationId }) {
           titles?.map((title) => (
             <FormControlLabel
               key={title._id}
+              onChange={(e) =>
+                setCheckedTitles([...checkedTitles, e.target.value])
+              }
               control={
+                (categoryId && title.categoryId === categoryId) ||
                 title._id === occupationId ? (
-                  <Checkbox defaultChecked />
+                  <Checkbox checked value={title._id} />
                 ) : (
-                  <Checkbox />
+                  <Checkbox value={title._id} />
                 )
               }
               label={title.name}
@@ -36,9 +46,15 @@ export default function CheckboxLabels({ occupationId }) {
           ))
         )}
       </div>
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-      {/*   <TextField id="outlined-basic" label="Outlined" variant="outlined" /> */}
-      <Button variant="contained">Contained</Button>
+      <TextField
+        id="outlined-basic"
+        label="Outlined"
+        variant="outlined"
+        onChange={(e) => setCity(e.target.value)}
+      />
+      <Button variant="contained" onClick={handleFilterClick}>
+        Contained
+      </Button>
     </StyledFormGroup>
   );
 }
