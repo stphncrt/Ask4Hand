@@ -26,6 +26,25 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const logoutWorker = async (endpoint) => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get(
+        `${process.env.BASE_SERVER_URL}/api${endpoint}`
+      );
+      setWorker(response.data.result);
+      toast.success(response?.data?.msg);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (err) {
+      setError(err.message);
+      toast.error(err?.response?.data?.msg || "Something went wrong!");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const postWorker = async (endpoint, data) => {
     try {
       setIsLoading(true);
@@ -53,6 +72,7 @@ export const AppProvider = ({ children }) => {
         error,
         isLoading,
         worker,
+        logoutWorker,
         getTitles,
         postWorker,
       }}

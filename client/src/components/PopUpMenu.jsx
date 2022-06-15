@@ -5,8 +5,9 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import AppContext from "../context/AppContext";
 
+
 export default function MenuPopupState() {
-  const { worker } = React.useContext(AppContext);
+  const { worker, logoutWorker } = React.useContext(AppContext);
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
       {(popupState) => (
@@ -16,7 +17,14 @@ export default function MenuPopupState() {
           </Button>
           <Menu {...bindMenu(popupState)}>
             <MenuItem onClick={popupState.close}>My Profile</MenuItem>
-            <MenuItem onClick={popupState.close}>Logout</MenuItem>
+            <MenuItem
+              onClick={() => {
+                logoutWorker("/auth/logout");
+                popupState.close;
+              }}
+            >
+              Logout
+            </MenuItem>
           </Menu>
         </React.Fragment>
       )}
