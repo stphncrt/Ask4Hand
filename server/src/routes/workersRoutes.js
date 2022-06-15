@@ -7,7 +7,7 @@ import {
 
 const workersRouter = express.Router();
 
-workersRouter.get("/find", getWorkersByCategory);
-workersRouter.get("/search", getWorkersBySearch);
-workersRouter.get("/filter", getWorkersByFilter);
+workersRouter.get("/find/:categoryId", getWorkersByCategory);
+workersRouter.get("/search/:occupationId", getWorkersBySearch);
+workersRouter.post("/filter", getWorkersByFilter);
 export default workersRouter;

@@ -82,7 +82,8 @@ export default function FreeSoloCreateOption() {
         style={{ height: 56, width: 200, backgroundColor: "#e63946" }}
         variant="contained"
         onClick={() => {
-          navigate(`/searchPage/${value._id}`);
+          //navigate(`/searchPage/${value._id}`);
+          navigate("/searchPage", { state: { occupationId: value._id } });
         }}
       >
         Get Started

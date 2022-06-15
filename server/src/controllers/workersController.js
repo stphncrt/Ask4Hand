@@ -4,7 +4,7 @@ import { logError } from "../util/logging.js";
 export const getWorkersByCategory = async (req, res) => {
   try {
     const workers = await Worker.find({
-      categoryId: req.body.categoryId,
+      categoryId: req.params.categoryId,
     });
     res.status(200).json({
       success: true,
@@ -22,7 +22,7 @@ export const getWorkersByCategory = async (req, res) => {
 export const getWorkersBySearch = async (req, res) => {
   try {
     const workers = await Worker.find({
-      occupationId: req.body.occupationId,
+      occupationId: req.params.occupationId,
     });
     res.status(200).json({
       success: true,
