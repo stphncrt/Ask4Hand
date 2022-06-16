@@ -22,7 +22,7 @@ export default function CheckboxLabels({ occupationId, categoryId }) {
 
 	return (
 		<StyledFormGroup>
-			<div>
+			<div className="form-group">
 				{isLoading ? (
 					<h3>Loading..</h3>
 				) : (
@@ -49,24 +49,30 @@ export default function CheckboxLabels({ occupationId, categoryId }) {
 				onChange={(e) => setCity(e.target.value)}
 			/>
 			<Button variant="contained" onClick={handleFilterClick}>
-				Contained
+				Search
 			</Button>
 		</StyledFormGroup>
 	);
 }
 
-export const StyledFormGroup = styled(FormGroup)`
+export const StyledFormGroup = styled.div`
 	display: flex;
 	flex-direction: column;
-	height: 60vh;
-	overflow-y: scroll;
 	gap: 1rem;
-	margin: 1rem;
-	border: 1px solid;
-	width: 50vh;
-	padding: 0.2rem;
-	div {
+	height: 100%;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	width: 20rem;
+	padding: 1rem;
+	background-color: "blue";
+	.form-group {
 		display: flex;
 		flex-direction: column;
+		height: 20rem;
+		overflow-y: scroll;
+		padding: 1rem;
+	}
+	@media (max-width: 600px) {
+		width: 100%;
+		margin: 1rem 0;
 	}
 `;
