@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from "react";
 import AppContext from "../../context/AppContext";
-import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import TitleCheckBox from "../../components/TitleCheckBox";
 import { useLoadScript } from "@react-google-maps/api";
@@ -9,25 +8,18 @@ import WorkerInfoCard from "../../components/WorkerInfoCard";
 
 const libraries = ["places"];
 function SearchPage() {
-	const location = useLocation().state;
-	const { workerList, getWorkerByTitle, getWorkerByCategory, isLoading } = useContext(AppContext);
-	const { isLoaded, loadError } = useLoadScript({
-		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
-		libraries,
-	});
-	useEffect(() => {
-		if (location.categoryId) {
-			getWorkerByCategory(`/find/${location.categoryId}`);
-		}
-		if (location.occupationId) {
-			getWorkerByTitle(`/search/${location.occupationId}`);
-		}
-	}, []);
+
+  const { workerList, getWorkerByOccupation, isLoading, occupationIds } =
+    useContext(AppContext);
+
+  useEffect(() => {
+    getWorkerByOccupation("/search", occupationIds);
+  }, []);
 
 	return (
 		<StyledWrapper>
 			<div className="flex-row">
-				<TitleCheckBox occupationId={location.occupationId} categoryId={location.categoryId} />
+				<TitleCheckBox />
 				<div className="map">
 					{loadError ? "error" : !isLoaded ? "loading..." : <Map workerList={workerList} />}
 				</div>
@@ -47,7 +39,6 @@ function SearchPage() {
 export default SearchPage;
 export const StyledWrapper = styled.div`
 	display: flex;
-
 	flex-wrap: wrap;
 	padding: 3rem;
 	align-items: flex-start;
