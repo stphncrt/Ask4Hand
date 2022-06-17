@@ -20,8 +20,8 @@ export const getWorkersBySearch = async (req, res) => {
 };
 
 export const getWorkersByFilter = async (req, res) => {
+  const regex = new RegExp(`${req.body.city}`, "i");
   try {
-    const regex = new RegExp(`${req.body.city}`, "i");
     const workers = await Worker.find({
       occupationId: { $in: req.body.occupationIds },
       city: { $regex: regex },
