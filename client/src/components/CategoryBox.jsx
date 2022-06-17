@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -6,14 +6,26 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import AppContext from "../context/AppContext";
+
 export default function MultiActionAreaCard({ category }) {
+  const { titles, occupationIds, setOccupationIds } = useContext(AppContext);
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    const occupationIdsByCategory = titles
+      .filter((title) => title.categoryId === category._id)
+      .map((title) => title._id);
+    setOccupationIds([...occupationIds, ...occupationIdsByCategory]);
+  };
+
   return (
     <StyledCard
       sx={{ maxWidth: 345, m: 1 }}
-      onClick={() =>
-        navigate("/searchPage", { state: { categoryId: category._id } })
-      }
+      onClick={() => {
+        handleClick();
+        navigate("/searchPage");
+      }}
     >
       <CardActionArea>
         <CardMedia

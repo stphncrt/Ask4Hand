@@ -6,13 +6,17 @@ import AppContext from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 
 const filter = createFilterOptions();
+
 export default function FreeSoloCreateOption() {
   const navigate = useNavigate();
   const [value, setValue] = React.useState(null);
-  const { titles, getTitles } = useContext(AppContext);
+  const { titles, getTitles, occupationIds, setOccupationIds } =
+    useContext(AppContext);
+
   useEffect(() => {
     getTitles("/occupations");
   }, []);
+
   return (
     <>
       <Autocomplete
@@ -82,8 +86,8 @@ export default function FreeSoloCreateOption() {
         style={{ height: 56, width: 200, backgroundColor: "#e63946" }}
         variant="contained"
         onClick={() => {
-          //navigate(`/searchPage/${value._id}`);
-          navigate("/searchPage", { state: { occupationId: value._id } });
+          setOccupationIds([...occupationIds, value._id]);
+          navigate("/searchPage");
         }}
       >
         Get Started

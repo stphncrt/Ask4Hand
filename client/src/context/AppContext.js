@@ -13,6 +13,8 @@ export const AppProvider = ({ children }) => {
   const [worker, setWorker] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [occupationIds, setOccupationIds] = useState([]);
+  const [city, setCity] = useState("");
 
   const getTitles = async (endpoint) => {
     try {
@@ -81,11 +83,12 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  const getWorkerByTitle = async (endpoint) => {
+  const getWorkerByOccupation = async (endpoint) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(
-        `${process.env.BASE_SERVER_URL}/api/worker/${endpoint}`
+      const response = await axios.post(
+        `${process.env.BASE_SERVER_URL}/api/worker/${endpoint}`,
+        { occupationIds }
       );
       setWorkerList(response.data.result);
     } catch (err) {
@@ -95,13 +98,15 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  const getWorkerByCategory = async (endpoint) => {
+  const getWorkerByFilter = async (endpoint) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(
-        `${process.env.BASE_SERVER_URL}/api/worker/${endpoint}`
+      //console.log(data);
+      const response = await axios.post(
+        `${process.env.BASE_SERVER_URL}/api/worker/${endpoint}`,
+        { occupationIds, city }
       );
-      setWorkerList(response.data.result);
+      await setWorkerList(response.data.result);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -118,12 +123,16 @@ export const AppProvider = ({ children }) => {
         isLoading,
         workerList,
         worker,
+        occupationIds,
+        city,
+        setOccupationIds,
         logoutWorker,
         getTitles,
         getCategories,
         postWorker,
-        getWorkerByTitle,
-        getWorkerByCategory,
+        getWorkerByOccupation,
+        getWorkerByFilter,
+        setCity,
       }}
     >
       {children}
