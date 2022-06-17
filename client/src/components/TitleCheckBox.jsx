@@ -22,7 +22,6 @@ export default function CheckboxLabels() {
 
   const handleChange = (e) => {
     const { value, checked } = e.target;
-
     // Case 1 : The user checks the box
     if (checked) {
       setOccupationIds([...occupationIds, value]);
@@ -89,17 +88,24 @@ export default function CheckboxLabels() {
   );
 }
 
-export const StyledFormGroup = styled(FormGroup)`
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  gap: 1rem;
-  margin: 1rem;
-  border: 1px solid;
-  width: 50vh;
-  padding: 0.2rem;
-  div {
-    display: flex;
-    flex-direction: column;
-  }
+export const StyledFormGroup = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	height: 100%;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	width: 20rem;
+	padding: 1rem;
+	background-color: "blue";
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		height: 20rem;
+		overflow-y: scroll;
+		padding: 1rem;
+	}
+	@media (max-width: 600px) {
+		width: 100%;
+		margin: 1rem 0;
+	}
 `;
