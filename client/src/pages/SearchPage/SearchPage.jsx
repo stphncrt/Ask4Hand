@@ -8,7 +8,10 @@ import WorkerInfoCard from "../../components/WorkerInfoCard";
 
 const libraries = ["places"];
 function SearchPage() {
-
+	const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
+    libraries,
+  });
   const { workerList, getWorkerByOccupation, isLoading, occupationIds } =
     useContext(AppContext);
 
@@ -29,7 +32,7 @@ function SearchPage() {
 				{isLoading ? (
 					<h3>Loading...</h3>
 				) : (
-					workerList?.map((worker) => <WorkerInfoCard worker={worker} />)
+					workerList?.map((worker) => <WorkerInfoCard key = {worker._id} worker={worker} />)
 				)}
 			</div>
 		</StyledWrapper>

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useContext, useEffect } from "react";
-import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import AppContext from "../context/AppContext";
@@ -46,7 +45,7 @@ export default function CheckboxLabels() {
 
   return (
     <StyledFormGroup>
-      <div>
+      <div className="form-group">
         {isLoading ? (
           <h3>Loading..</h3>
         ) : (
