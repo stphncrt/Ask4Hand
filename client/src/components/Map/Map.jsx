@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
+import { GoogleMap, Marker, InfoWindow, Circle } from "@react-google-maps/api";
 import { Paper, Typography } from "@mui/material";
 import MapStyle from "./Map.style.js";
 
@@ -12,6 +12,20 @@ const options = {
 };
 const Map = ({ workerList }) => {
   const [selectedMarker, setSelectedMarker] = useState(null);
+  const [circle, setCircle] = useState(null);
+  const optionsForCircle = {
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    fillOpacity: 0.35,
+    clickable: false,
+    draggable: false,
+    editable: false,
+    visible: true,
+    radius: 30000,
+    zIndex: 1,
+  };
 
   return (
     <GoogleMap
@@ -30,6 +44,8 @@ const Map = ({ workerList }) => {
               }}
               animation={window.google.maps.Animation.DROP}
               onClick={() => setSelectedMarker(worker)}
+              onMouseOver={() => setCircle(worker)}
+              onMouseOut={() => setCircle(null)}
             />
           ))
         : null}
@@ -59,8 +75,21 @@ const Map = ({ workerList }) => {
           </Paper>
         </InfoWindow>
       ) : null}
+      {circle ? (
+        <>
+          <Circle
+            center={{
+              lat: Number(circle?.location?.lat),
+              lng: Number(circle?.location?.lng),
+            }}
+            radius={circle?.workRange * 1000}
+            options={optionsForCircle}
+          />
+        </>
+      ) : null}
     </GoogleMap>
   );
 };
 
 export default Map;
+
