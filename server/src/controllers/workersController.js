@@ -5,7 +5,7 @@ export const getWorkersBySearch = async (req, res) => {
   try {
     const workers = await Worker.find({
       occupationId: { $in: req.body.occupationIds },
-    });
+    }).sort({ hourlyRate: 1 });
     res.status(200).json({
       success: true,
       result: workers,
@@ -21,10 +21,11 @@ export const getWorkersBySearch = async (req, res) => {
 
 export const getWorkersByFilter = async (req, res) => {
   try {
+    const regex = new RegExp(`${req.body.city}`, "i");
     const workers = await Worker.find({
       occupationId: { $in: req.body.occupationIds },
-      city: req.body.city,
-    });
+      city: { $regex: regex },
+    }).sort({ hourlyRate: 1 });
     res.status(200).json({
       success: true,
       result: workers,
