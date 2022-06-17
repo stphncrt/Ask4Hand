@@ -6,6 +6,7 @@ export const registerValidation = (data) => {
     lastName: Joi.string().min(1).max(30).required(),
     occupationId: Joi.string().required(),
     email: Joi.string().email().required(),
+    profileImage: Joi.string(),
     phoneNumber: Joi.number().required(),
     images: Joi.array(),
     categoryId: Joi.string().required(),
