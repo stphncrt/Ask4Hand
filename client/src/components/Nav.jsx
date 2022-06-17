@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -6,12 +7,13 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styled } from "@mui/material/styles";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import AppContext from "../context/AppContext";
 import MenuPopupState from "./PopUpMenu";
 
 export default function ButtonAppBar() {
   const { worker } = React.useContext(AppContext);
+  let navigate = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -29,7 +31,8 @@ export default function ButtonAppBar() {
             color="primary"
             variant="h4"
             component="div"
-            sx={{ flexGrow: 1 }}
+            sx={{ flexGrow: 1, cursor: "pointer" }}
+            onClick={() => navigate("/")}
           >
             Ask4Hand
           </Typography>
