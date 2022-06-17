@@ -6,6 +6,7 @@ const workerSchema = new mongoose.Schema(
     lastName: { type: String, required: true },
     occupationId: { type: String, required: true },
     email: { type: String, required: true, lowercase: true, unique: true },
+    profileImage: { type: String },
     phoneNumber: { type: Number, required: true },
     images: { type: Array },
     categoryId: { type: String, required: true },

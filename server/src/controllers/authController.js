@@ -30,6 +30,7 @@ export const createWorker = async (req, res) => {
     lastName: req.body.lastName,
     occupationId: req.body.occupationId,
     email: req.body.email,
+    profileImage: req.body.profileImage,
     phoneNumber: req.body.phoneNumber,
     images: req.body.images,
     categoryId: req.body.categoryId,

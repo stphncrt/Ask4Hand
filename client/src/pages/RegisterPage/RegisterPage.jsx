@@ -30,6 +30,8 @@ const styleFunc = makeStyles({
 
 const RegisterPage = () => {
   const { titles, getTitles, postWorker } = useContext(AppContext);
+  const [imageList, setImageList] = useState([""]);
+  const [profileImage, setProfileImage] = useState([""]);
 
   useEffect(() => {
     getTitles("/occupations");
@@ -89,7 +91,7 @@ const RegisterPage = () => {
     onSubmit: async (values) => {
       try {
         const location = await getLatLng(values.postalCode, values.city);
-        const newValues = { ...values, location };
+        const newValues = { ...values, location, profileImage };
         newValues.categoryId = titles.find(
           (title) => title._id === formik.values.occupationId
         )?.categoryId;
@@ -101,8 +103,6 @@ const RegisterPage = () => {
       }
     },
   });
-
-  const [imageList, setImageList] = useState([""]);
 
   const addImageInputField = () => {
     setImageList([...imageList, ""]);
@@ -159,7 +159,9 @@ const RegisterPage = () => {
               helperText={formik.errors.occupationId}
             >
               {titles?.map((title) => (
-                <MenuItem value={title._id}>{title.name}</MenuItem>
+                <MenuItem key={title._id} value={title._id}>
+                  {title.name}
+                </MenuItem>
               ))}
             </Select>
           </Grid>
@@ -177,6 +179,16 @@ const RegisterPage = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              label="Profile Image Url"
+              variant="outlined"
+              fullWidth
+              value={profileImage}
+              onChange={(e) => setProfileImage(e.target.value)}
+              name="profileImageUrl"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
               label="Phone Number"
               variant="outlined"
               fullWidth
@@ -187,7 +199,6 @@ const RegisterPage = () => {
               helperText={formik.errors.phoneNumber}
             />
           </Grid>
-
           {imageList.map((item, index) => (
             <Grid item xs={12} key={index}>
               <TextField
