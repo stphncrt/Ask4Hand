@@ -12,16 +12,23 @@ function SearchPage() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
     libraries,
   });
-  const { workerList, getWorkerByOccupation, isLoading, occupationIds } =
-    useContext(AppContext);
+  const {
+    workerList,
+    getWorkerByOccupation,
+    isLoading,
+    occupationIds,
+    getTitles,
+    titles,
+  } = useContext(AppContext);
 
   useEffect(() => {
+    getTitles("/occupations");
     getWorkerByOccupation("/search", occupationIds);
   }, []);
 
   return (
     <StyledWrapper>
-      <div className="flex-row">
+      <div className="flex-row first-section">
         <TitleCheckBox />
         <div className="map">
           {loadError ? (
@@ -34,14 +41,14 @@ function SearchPage() {
         </div>
       </div>
 
-      <div className="flex-row">
+      <div className="flex-row cards">
         {isLoading ? (
           <h3>Loading...</h3>
         ) : workerList?.length === 0 ? (
           <h3>There is no worker that fits your criteria.</h3>
         ) : (
           workerList?.map((worker) => (
-            <WorkerInfoCard key={worker._id} worker={worker} />
+            <WorkerInfoCard key={worker._id} worker={worker} titles={titles} />
           ))
         )}
       </div>
@@ -62,20 +69,31 @@ export const StyledWrapper = styled.div`
     background-color: red;
     gap: 1rem;
   }
+  .first-section{
+    height:70vh;
+  }
   .flex-row {
     display: flex;
     flex-direction: row;
     gap: 1rem;
     flex-wrap: wrap;
+    border: 1px solid;
+    min-width: 95vw;
+  }
+  .cards{
+    justify-content: space-between;
+
   }
   .map {
-    height: 480px;
+    height: 70vh;
     background-color: #1976d2;
-    width: 60vw;
+    width: 75vw;
   }
+  
   @media (max-width: 600px) {
     .map {
       width: 70vw;
     }
   }
 `;
+

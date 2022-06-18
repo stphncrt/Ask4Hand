@@ -81,7 +81,7 @@ export default function CheckboxLabels() {
         onChange={(e) => setCity(e.target.value)}
       />
       <Button variant="contained" onClick={handleSearch}>
-        Contained
+        Search
       </Button>
     </StyledFormGroup>
   );
@@ -99,7 +99,7 @@ export const StyledFormGroup = styled.div`
 	.form-group {
 		display: flex;
 		flex-direction: column;
-		height: 20rem;
+		height: 70vh;
 		overflow-y: scroll;
 		padding: 1rem;
 	}
