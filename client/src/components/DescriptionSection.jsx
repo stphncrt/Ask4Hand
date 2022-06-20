@@ -33,24 +33,24 @@ function DescriptionSection() {
 
 export default DescriptionSection;
 export const StyledContainer = styled.div`
-	background-color: #ebf1e9;
-	padding: 1rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  background-color: #ebf1e9;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-	h2 {
-		text-align: center;
-		color: #1976d2;
-	}
-	.descriptionSection {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: space-around;
-		align-items: center;
-		height: auto;
-		margin: 0 0.5rem;
+  h2 {
+    text-align: center;
+    color: #1976d2;
+  }
+  .descriptionSection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+    margin: 0 0.5rem;
 
     .imageContainer {
       display: flex;

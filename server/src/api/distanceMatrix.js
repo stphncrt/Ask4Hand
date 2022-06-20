@@ -9,6 +9,6 @@ export const distanceMatrix = async (origin, destination) => {
     );
     return distance;
   } catch (err) {
-    console.log(err);
+    return err;
   }
 };

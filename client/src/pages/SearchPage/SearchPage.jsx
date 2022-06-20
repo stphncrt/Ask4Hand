@@ -99,5 +99,4 @@ export const StyledWrapper = styled.div`
       width: 70vw;
     }
   }
-
 `;
