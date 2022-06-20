@@ -1,5 +1,6 @@
 import Worker from "../models/Worker.js";
 import { logError } from "../util/logging.js";
+import { distanceMatrix } from "../api/distanceMatrix.js";
 
 export const getWorkersBySearch = async (req, res) => {
   try {
@@ -30,6 +31,8 @@ export const getWorkersByFilter = async (req, res) => {
       success: true,
       result: workers,
     });
+    const distance = await distanceMatrix();
+    console.log(distance);
   } catch (error) {
     logError(error);
     res.status(500).json({
