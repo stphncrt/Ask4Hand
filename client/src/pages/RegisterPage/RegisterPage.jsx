@@ -90,19 +90,20 @@ const RegisterPage = () => {
 		},
 		validationSchema: RegisterValidationSchema,
 
-		onSubmit: async (values) => {
-			try {
-				const location = await getLatLng(values.postalCode, values.city);
-				const newValues = { ...values, location, profileImage };
-				newValues.categoryId = titles.find(
-					(title) => title._id === formik.values.occupationId,
-				)?.categoryId;
-				delete newValues.validatePassword, postWorker("/auth/register", newValues);
-			} catch (error) {
-				return error;
-			}
-		},
-	});
+    onSubmit: async (values) => {
+      try {
+        const location = await getLatLng(values.postalCode, values.city);
+        const newValues = { ...values, location, profileImage };
+        newValues.categoryId = titles.find(
+          (title) => title._id === formik.values.occupationId
+        )?.categoryId;
+        delete newValues.validatePassword,
+          postWorker("/auth/register", newValues);
+      } catch (error) {
+        return error;
+      }
+    },
+  });
 
 	const addImageInputField = () => {
 		setImageList([...imageList, ""]);

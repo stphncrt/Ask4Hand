@@ -5,7 +5,6 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import AppContext from "../context/AppContext";
 
-
 export default function MenuPopupState() {
   const { worker, logoutWorker } = React.useContext(AppContext);
   return (

@@ -88,23 +88,23 @@ export default function CheckboxLabels() {
 }
 
 export const StyledFormGroup = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	height: 100%;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-	width: 20rem;
-	padding: 1rem;
-	background-color: "blue";
-	.form-group {
-		display: flex;
-		flex-direction: column;
-		height: 70vh;
-		overflow-y: scroll;
-		padding: 1rem;
-	}
-	@media (max-width: 600px) {
-		width: 100%;
-		margin: 1rem 0;
-	}
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 20rem;
+  padding: 1rem;
+  background-color: "blue";
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    overflow-y: scroll;
+    padding: 1rem;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+    margin: 1rem 0;
+  }
 `;

@@ -34,9 +34,9 @@ function Footer() {
       <div className="container">
         <h3 className="title"> CONNECT </h3>
         <div className="iconContainer">
-          <StyledFacebookIcon color="primary" className="icon"/>
-          <YouTubeIcon color="error" className="icon"/>
-          <TwitterIcon color="primary" className="icon"/>
+          <StyledFacebookIcon color="primary" className="icon" />
+          <YouTubeIcon color="error" className="icon" />
+          <TwitterIcon color="primary" className="icon" />
         </div>
       </div>
     </StyledWrapper>
@@ -54,7 +54,7 @@ export const StyledWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: baseline;
- 
+
   .image {
     width: 8rem;
   }
@@ -79,10 +79,10 @@ export const StyledWrapper = styled.div`
     justify-content: center;
   }
   .icon {
-    background-color:#fff ;
-    border-radius:50%;
+    background-color: #fff;
+    border-radius: 50%;
     padding: 3px;
-    cursor: pointer ;
+    cursor: pointer;
   }
   @media screen and (max-width: 600px) {
     flex-direction: column;
@@ -91,6 +91,6 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledFacebookIcon = styled(FacebookIcon)`
-background-color:#fff ;
-cursor: pointer ;
-`
+  background-color: #fff;
+  cursor: pointer;
+`;
