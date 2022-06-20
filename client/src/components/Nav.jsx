@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styled } from "@mui/material/styles";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AppContext from "../context/AppContext";
 import MenuPopupState from "./PopUpMenu";
 
@@ -61,5 +61,3 @@ export const StyledButton = styled(Link)`
   text-decoration: none;
   margin: 3px;
 `;
-
-

@@ -52,7 +52,7 @@ export const StyledContainer = styled.div`
   margin: 0 0.5rem;
   text-align: center;
   justify-content: center;
-  background-color:#f1faee;
+  background-color: #f1faee;
 
   .stepperWrapper {
     display: flex;
@@ -70,7 +70,7 @@ export const StyledContainer = styled.div`
     p {
       text-align: center;
     }
-   
+
     .imgContainer {
       display: flex;
       align-items: center;

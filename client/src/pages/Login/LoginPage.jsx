@@ -2,8 +2,6 @@ import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import AppContext from "../../context/AppContext";
-
-
 import { Button, TextField, Grid, Container, Typography } from "@mui/material";
 import * as Yup from "yup";
 
@@ -32,8 +30,6 @@ const LoginPage = () => {
       .min(8, "Password is too short - should be 8 chars minimum.")
       .matches(/[a-z]/, "Password must have a lowercase letter")
       .matches(/[A-Z]/, "Password must have a uppercase letter"),
-    // .matches(/\d+/, "Password must have a number")
-    // .matches(/[!?.*@$#%&^()-+]+/, "Password must have a special character"),
   });
   const formik = useFormik({
     initialValues: {

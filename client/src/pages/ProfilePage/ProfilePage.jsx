@@ -28,7 +28,7 @@ const styleFunc = makeStyles({
   },
 });
 
-const RegisterPage = () => {
+const ProfilePage = () => {
   const { titles, getTitles, postWorker } = useContext(AppContext);
   const [imageList, setImageList] = useState([""]);
   const [profileImage, setProfileImage] = useState([""]);
@@ -116,7 +116,7 @@ const RegisterPage = () => {
   return (
     <Container className={signUpStyles.wrapper} maxWidth="sm">
       <Typography className={signUpStyles.text}>
-        Pleaser enter your credentials to get registered..
+        You can update your credentials
       </Typography>
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={3}>
@@ -346,4 +346,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default ProfilePage;

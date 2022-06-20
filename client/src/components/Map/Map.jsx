@@ -92,4 +92,3 @@ const Map = ({ workerList }) => {
 };
 
 export default Map;
-
