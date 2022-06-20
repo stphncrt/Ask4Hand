@@ -98,9 +98,8 @@ const RegisterPage = () => {
 					(title) => title._id === formik.values.occupationId,
 				)?.categoryId;
 				delete newValues.validatePassword, postWorker("/auth/register", newValues);
-				console.log(newValues);
 			} catch (error) {
-				console.log(error);
+				return error;
 			}
 		},
 	});

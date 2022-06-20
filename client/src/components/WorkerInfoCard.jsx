@@ -10,7 +10,7 @@ import { red } from "@mui/material/colors";
 import ModalCard from "./ModalCard";
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 	container: {
 		position: "relative",
 		boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
