@@ -7,7 +7,6 @@ import cleanerLady from "../../assets/cleaner2.jpeg";
 function DescriptionSection() {
 	return (
 		<StyledContainer>
-			<h2>About Our Company</h2>
 			<div className="descriptionSection">
 				<div className="imageContainer">
 					<div className="columnImages">
@@ -17,6 +16,7 @@ function DescriptionSection() {
 					<img id="cleanWindow" src={cleaner} alt="" />
 				</div>
 				<div className="description">
+					<h2>About Our Company</h2>
 					<p>
 						We ensure the best quality clean at the best price based on your budget. We do not stop
 						until you are 100% satisfied with the results of our services. Worrying about cleaning
@@ -36,6 +36,11 @@ export const StyledContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+	h2 {
+		text-align: center;
+		color: #1976d2;
+	}
 	.descriptionSection {
 		display: flex;
 		flex-direction: row;
