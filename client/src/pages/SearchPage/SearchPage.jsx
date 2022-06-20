@@ -72,7 +72,7 @@ export const StyledWrapper = styled.div`
 		min-width: 95vw;
 	}
 	.cards {
-		justify-content: space-around;
+		/* justify-content: space-around; */
 	}
 	.map {
 		height: 70vh;
