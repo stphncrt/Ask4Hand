@@ -83,6 +83,26 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const updateWorker = async (endpoint, data) => {
+    try {
+      setIsLoading(true);
+      const response = await axios.put(
+        `${process.env.BASE_SERVER_URL}/api${endpoint}`,
+        data
+      );
+      setWorker(response?.data?.result?.worker);
+      toast.success(response?.data?.msg);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (err) {
+      setError(err.message);
+      toast.error(err?.response?.data?.msg || "Something went wrong!");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const getWorkerByOccupation = async (endpoint) => {
     try {
       setIsLoading(true);
@@ -130,6 +150,7 @@ export const AppProvider = ({ children }) => {
         getTitles,
         getCategories,
         postWorker,
+        updateWorker,
         getWorkerByOccupation,
         getWorkerByFilter,
         setCity,
