@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import * as Yup from "yup";
 import AppContext from "../../context/AppContext";
-import { getLatLng } from "../../api/GetLatLng";
+import { getLatLng } from "../../api/getlatlng";
 import searchBackgroundImage from "../../../assets/search-bar-background.jpeg";
 
 const styleFunc = makeStyles({
