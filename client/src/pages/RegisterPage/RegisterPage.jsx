@@ -2,24 +2,24 @@ import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import {
-	Button,
-	TextField,
-	Grid,
-	Container,
-	Select,
-	MenuItem,
-	InputLabel,
-	Typography,
+  Button,
+  TextField,
+  Grid,
+  Container,
+  Select,
+  MenuItem,
+  InputLabel,
+  Typography,
 } from "@mui/material";
 import * as Yup from "yup";
 import AppContext from "../../context/AppContext";
-import { getLatLng } from "../../api/GetLatLng";
+import { getLatLng } from "../../api/getlatlng";
 import searchBackgroundImage from "../../../assets/search-bar-background.jpeg";
 
 const RegisterPage = () => {
-	const { titles, getTitles, postWorker } = useContext(AppContext);
-	const [imageList, setImageList] = useState([""]);
-	const [profileImage, setProfileImage] = useState([""]);
+  const { titles, getTitles, postWorker } = useContext(AppContext);
+  const [imageList, setImageList] = useState([""]);
+  const [profileImage, setProfileImage] = useState([""]);
 
 	useEffect(() => {
 		getTitles("/occupations");
@@ -27,74 +27,80 @@ const RegisterPage = () => {
 	const phoneRegExp =
 		/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-	const RegisterValidationSchema = Yup.object({
-		firstName: Yup.string().max(15, "Must be 15 characters or less").required("Required"),
-		lastName: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
-		title: Yup.string(),
-		email: Yup.string().email("Invalid email address").required("Required"),
-		phoneNumber: Yup.string()
-			.matches(phoneRegExp, "Phone number is not valid")
-			.max(10, "Must be 10 characters or less")
-			.required("Required"),
-		category: Yup.string(),
-		description: Yup.string().required("Required"),
-		postalCode: Yup.string().required("Required"),
-		city: Yup.string().required("Required"),
-		hourlyRate: Yup.number().required("Required"),
-		workRange: Yup.string().required("Required"),
-		password: Yup.string()
-			.required("No password provided.")
-			.min(8, "Password is too short - should be 8 chars minimum.")
-			.matches(/[a-z]/, "Password must have a lowercase letter")
-			.matches(/[A-Z]/, "Password must have a uppercase letter"),
-		// .matches(/\d+/, "Password must have a number")
-		// .matches(/[!?.*@$#%&^()-+]+/, "Password must have a special character"),
 
-		validatePassword: Yup.string()
-			.required("No password provided.")
-			.oneOf([Yup.ref("password")], "Passwords does not match"),
-	});
-	const formik = useFormik({
-		initialValues: {
-			firstName: "asd",
-			lastName: "asd",
-			occupationId: "",
-			email: "asd@gmail.com",
-			phoneNumber: "1234567891",
-			description: "zzzzzzzzzz",
-			postalCode: "1112zd",
-			city: "amsterdam",
-			hourlyRate: "5",
-			workRange: "23",
-			password: "Asdf1234",
-			validatePassword: "Asdf1234",
-		},
-		validationSchema: RegisterValidationSchema,
+  const RegisterValidationSchema = Yup.object({
+    firstName: Yup.string()
+      .max(15, "Must be 15 characters or less")
+      .required("Required"),
+    lastName: Yup.string()
+      .max(20, "Must be 20 characters or less")
+      .required("Required"),
+    title: Yup.string(),
+    email: Yup.string().email("Invalid email address").required("Required"),
+    phoneNumber: Yup.string()
+      .matches(phoneRegExp, "Phone number is not valid")
+      .max(10, "Must be 10 characters or less")
+      .required("Required"),
+    category: Yup.string(),
+    description: Yup.string().required("Required"),
+    postalCode: Yup.string().required("Required"),
+    city: Yup.string().required("Required"),
+    hourlyRate: Yup.number().required("Required"),
+    workRange: Yup.string().required("Required"),
+    password: Yup.string()
+      .required("No password provided.")
+      .min(8, "Password is too short - should be 8 chars minimum.")
+      .matches(/[a-z]/, "Password must have a lowercase letter")
+      .matches(/[A-Z]/, "Password must have a uppercase letter"),
+    // .matches(/\d+/, "Password must have a number")
+    // .matches(/[!?.*@$#%&^()-+]+/, "Password must have a special character"),
 
-		onSubmit: async (values) => {
-			try {
-				const location = await getLatLng(values.postalCode, values.city);
-				const newValues = { ...values, location, profileImage };
-				newValues.categoryId = titles.find(
-					(title) => title._id === formik.values.occupationId,
-				)?.categoryId;
-				delete newValues.validatePassword, postWorker("/auth/register", newValues);
-			} catch (error) {
-				return error;
-			}
-		},
-	});
+    validatePassword: Yup.string()
+      .required("No password provided.")
+      .oneOf([Yup.ref("password")], "Passwords does not match"),
+  });
+  const formik = useFormik({
+    initialValues: {
+      firstName: "asd",
+      lastName: "asd",
+      occupationId: "",
+      email: "asd@gmail.com",
+      phoneNumber: "1234567891",
+      description: "zzzzzzzzzz",
+      postalCode: "1112zd",
+      city: "amsterdam",
+      hourlyRate: "5",
+      workRange: "23",
+      password: "Asdf1234",
+      validatePassword: "Asdf1234",
+    },
+    validationSchema: RegisterValidationSchema,
 
-	const addImageInputField = () => {
-		setImageList([...imageList, ""]);
-	};
+    onSubmit: async (values) => {
+      try {
+        const location = await getLatLng(values.postalCode, values.city);
+        const newValues = { ...values, location, profileImage };
+        newValues.categoryId = titles.find(
+          (title) => title._id === formik.values.occupationId
+        )?.categoryId;
+        delete newValues.validatePassword,
+          postWorker("/auth/register", newValues);
+      } catch (error) {
+        return error;
+      }
+    },
+  });
 
-	const handleImageUrlChange = (index, event) => {
-		const updatedImageList = [...imageList];
-		updatedImageList[index] = event.target.value;
-		setImageList(updatedImageList);
-	};
+  const addImageInputField = () => {
+    setImageList([...imageList, ""]);
+  };
 
+  const handleImageUrlChange = (index, event) => {
+    const updatedImageList = [...imageList];
+    updatedImageList[index] = event.target.value;
+    setImageList(updatedImageList);
+  };
+  
 	return (
 		<StyledWrapper>
 			<Container class="container" maxWidth="sm">

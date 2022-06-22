@@ -8,7 +8,6 @@ function HowItWorks() {
 	return (
 		<StyledContainer>
 			<h2 className="title">How It Works</h2>
-
 			<div className="stepperWrapper">
 				<div className="step">
 					<div className="imgContainer">
@@ -41,6 +40,7 @@ function HowItWorks() {
 
 export default HowItWorks;
 export const StyledContainer = styled.div`
+
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -74,20 +74,20 @@ export const StyledContainer = styled.div`
 			text-align: center;
 		}
 
-		.imgContainer {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 110px;
-			height: 110px;
-			border-radius: 50%;
-			background-color: #fff;
-			-webkit-box-shadow: 2px 3px 30px rgb(188 207 219 / 65%);
-			-moz-box-shadow: 2px 3px 30px rgba(188, 207, 219, 0.65);
-			box-shadow: 2px 3px 30px rgb(188 207 219 / 65%);
-			line-height: 110px;
-		}
-	}
+    .imgContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background-color: #fff;
+      -webkit-box-shadow: 2px 3px 30px rgb(188 207 219 / 65%);
+      -moz-box-shadow: 2px 3px 30px rgba(188, 207, 219, 0.65);
+      box-shadow: 2px 3px 30px rgb(188 207 219 / 65%);
+      line-height: 110px;
+    }
+  }
 
 	@media screen and (max-width: 600px) {
 		.step {
