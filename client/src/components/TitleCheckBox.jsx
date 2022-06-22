@@ -11,7 +11,7 @@ export default function CheckboxLabels() {
   const {
     titles,
     getTitles,
-    getWorkerByFilter,
+    getWorkers,
     isLoading,
     occupationIds,
     setOccupationIds,
@@ -32,7 +32,7 @@ export default function CheckboxLabels() {
   };
 
   const handleSearch = () => {
-    getWorkerByFilter("/filter");
+    getWorkers("/filter");
   };
 
   useEffect(() => {

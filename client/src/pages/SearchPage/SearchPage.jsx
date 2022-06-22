@@ -5,7 +5,8 @@ import TitleCheckBox from "../../components/TitleCheckBox";
 import { useLoadScript } from "@react-google-maps/api";
 import Map from "../../components/Map/Map";
 import WorkerInfoCard from "../../components/WorkerInfoCard";
-import PaginationComponent from "../../components/Pagination";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 const libraries = ["places"];
 function SearchPage() {
@@ -13,20 +14,27 @@ function SearchPage() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
     libraries,
   });
-  const {
-    workerList,
-    getWorkerByOccupation,
-    isLoading,
-    occupationIds,
-    getTitles,
-    titles,
-  } = useContext(AppContext);
-  const displayPagination = workerList?.length === 0 ? "none" : "block";
+  const { workerList, isLoading, getTitles, getWorkers, titles } =
+    useContext(AppContext);
+
+  const [currentPage, setCurrentPage] = React.useState(1);
+
+  const handleChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
   useEffect(() => {
     getTitles("/occupations");
-    getWorkerByOccupation("/search", occupationIds);
+    getWorkers("/filter");
   }, []);
+
+  const workersPerPage = 3;
+  const indexOfLastWorker = currentPage * workersPerPage;
+  const indexOfFirstWorker = indexOfLastWorker - workersPerPage;
+  const currentWorkers = workerList?.slice(
+    indexOfFirstWorker,
+    indexOfLastWorker
+  );
 
   return (
     <StyledWrapper>
@@ -46,15 +54,23 @@ function SearchPage() {
       <div className="flex-row cards">
         {isLoading ? (
           <h3>Loading...</h3>
-        ) : workerList?.length === 0 ? (
+        ) : currentWorkers?.length === 0 ? (
           <h3>There is no worker that fits your criteria.</h3>
         ) : (
-          workerList?.map((worker) => (
+          currentWorkers?.map((worker) => (
             <WorkerInfoCard key={worker._id} worker={worker} titles={titles} />
           ))
         )}
       </div>
-      <PaginationComponent className="pagination" display={displayPagination} />
+      {workerList?.length > 0 && (
+        <Stack spacing={2}>
+          <Pagination
+            count={Math.ceil(workerList?.length / workersPerPage)}
+            currentPage={currentPage}
+            onChange={handleChange}
+          />
+        </Stack>
+      )}
     </StyledWrapper>
   );
 }

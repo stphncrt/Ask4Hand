@@ -1,11 +1,7 @@
 import express from "express";
-import {
-  getWorkersBySearch,
-  getWorkersByFilter,
-} from "../controllers/workersController.js";
+import { getWorkers } from "../controllers/workersController.js";
 
 const workersRouter = express.Router();
 
-workersRouter.post("/search", getWorkersBySearch);
-workersRouter.post("/filter", getWorkersByFilter);
+workersRouter.post("/filter", getWorkers);
 export default workersRouter;
