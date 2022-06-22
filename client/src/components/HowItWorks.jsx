@@ -5,78 +5,74 @@ import logoReview from "../../assets/hiw2.jpeg";
 import logoHire from "../../assets/hiw3.jpeg";
 
 function HowItWorks() {
-  return (
-    <StyledContainer>
-      <h2 className="title">How It Works</h2>
-      <div className="stepperWrapper">
-        <div className="step">
-          <div className="imgContainer">
-            <img src={logoTell} />
-          </div>
-          <h3>Tell us what you need</h3>
-          <p>
-            Book & pay online. We’ll match you with a trusted, experienced house
-            cleaner
-          </p>
-        </div>
-        <div className="step">
-          <div className="imgContainer">
-            <img src={logoReview} />
-          </div>
-          <h3>Review service providers</h3>
-          <p>
-            Within seconds, you’ll receive expert service providers profile with
-            their ratings. choose one among them.
-          </p>
-        </div>
-        <div className="step">
-          <div className="imgContainer">
-            <img src={logoHire} />
-          </div>
-          <h3>Hire the right pro</h3>
-          <p>
-            Compare prices, profiles, and reviews, then hire the pro that’s
-            right for you.
-          </p>
-        </div>
-      </div>
-    </StyledContainer>
-  );
+	return (
+		<StyledContainer>
+			<h2 className="title">How It Works</h2>
+			<div className="stepperWrapper">
+				<div className="step">
+					<div className="imgContainer">
+						<img src={logoTell} />
+					</div>
+					<h3>Tell us what you need</h3>
+					<p>Book & pay online. We’ll match you with a trusted, experienced house cleaner</p>
+				</div>
+				<div className="step">
+					<div className="imgContainer">
+						<img src={logoReview} />
+					</div>
+					<h3>Review service providers</h3>
+					<p>
+						Within seconds, you’ll receive expert service providers profile with their ratings.
+						choose one among them.
+					</p>
+				</div>
+				<div className="step">
+					<div className="imgContainer">
+						<img src={logoHire} />
+					</div>
+					<h3>Hire the right pro</h3>
+					<p>Compare prices, profiles, and reviews, then hire the pro that’s right for you.</p>
+				</div>
+			</div>
+		</StyledContainer>
+	);
 }
 
 export default HowItWorks;
 export const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 0 0.5rem;
-  text-align: center;
-  justify-content: center;
-  background-color: #f1faee;
-  h2 {
-    text-align: center;
-    color: #1976d2;
-  }
-  h3 {
-    color: #1976d2;
-    font-weight: 600;
-  }
-  .stepperWrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin: 1rem;
-  }
-  .step {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    align-items: center;
-    justify-content: center;
-    p {
-      text-align: center;
-    }
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 0 0.5rem;
+	text-align: center;
+	justify-content: center;
+	background-color: #f1faee;
+	h2 {
+		text-align: center;
+		color: #1976d2;
+		margin-left: -4rem;
+	}
+	h3 {
+		color: #1976d2;
+		font-weight: 600;
+	}
+	.stepperWrapper {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 2rem;
+		margin: 1rem;
+	}
+	.step {
+		display: flex;
+		flex-direction: column;
+		width: 30%;
+		align-items: center;
+		justify-content: center;
+		p {
+			text-align: center;
+		}
 
     .imgContainer {
       display: flex;
@@ -93,9 +89,12 @@ export const StyledContainer = styled.div`
     }
   }
 
-  @media screen and (max-width: 600px) {
-    .step {
-      width: 100%;
-    }
-  }
+	@media screen and (max-width: 600px) {
+		.step {
+			width: 100%;
+		}
+		h2 {
+			margin-left: 0;
+		}
+	}
 `;

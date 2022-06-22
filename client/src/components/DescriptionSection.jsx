@@ -33,64 +33,66 @@ function DescriptionSection() {
 
 export default DescriptionSection;
 export const StyledContainer = styled.div`
-  background-color: #ebf1e9;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
-  h2 {
-    text-align: center;
-    color: #1976d2;
-  }
-  .descriptionSection {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    height: auto;
-    margin: 0 0.5rem;
+	background-color: #ebf1e9;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 60vh;
+	h2 {
+		text-align: center;
+		color: #1976d2;
+	}
+	.descriptionSection {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		align-items: center;
+		height: auto;
+		margin: 0 0.5rem;
 
     .imageContainer {
       display: flex;
       flex-direction: row;
       gap: 0.5rem;
+      
+			.columnImages {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				img {
+					width: 10rem;
+					height: 8rem;
+				}
+			}
+		}
+		.description {
+			align-items: center;
+			width: 50%;
+		}
+		#cleanWindow {
+			height: 16.5rem;
+		}
+		p {
+			text-align: center;
+		}
+	}
+	@media (max-width: 600px) {
+		height: auto;
+		.descriptionSection {
+			display: block;
+		}
+		.description {
+			width: 100% !important;
+			p {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 5; /* number of lines to show */
+				-webkit-box-orient: vertical;
+			}
+		}
+	}
 
-      .columnImages {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        img {
-          width: 10rem;
-          height: 8rem;
-        }
-      }
-    }
-    .description {
-      align-items: center;
-      width: 50%;
-    }
-    #cleanWindow {
-      height: 16.5rem;
-    }
-    p {
-      text-align: center;
-    }
-  }
-  @media (max-width: 600px) {
-    .descriptionSection {
-      display: block;
-    }
-    .description {
-      width: 100% !important;
-      p {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 5; /* number of lines to show */
-        -webkit-box-orient: vertical;
-      }
-    }
-  }
-`;
