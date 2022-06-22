@@ -8,6 +8,7 @@ function HowItWorks() {
 	return (
 		<StyledContainer>
 			<h2 className="title">How It Works</h2>
+
 			<div className="stepperWrapper">
 				<div className="step">
 					<div className="imgContainer">
@@ -50,6 +51,7 @@ export const StyledContainer = styled.div`
 	h2 {
 		text-align: center;
 		color: #1976d2;
+		margin-left: -4rem;
 	}
 	h3 {
 		color: #1976d2;
@@ -90,6 +92,9 @@ export const StyledContainer = styled.div`
 	@media screen and (max-width: 600px) {
 		.step {
 			width: 100%;
+		}
+		h2 {
+			margin-left: 0;
 		}
 	}
 `;

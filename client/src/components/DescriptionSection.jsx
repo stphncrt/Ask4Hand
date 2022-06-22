@@ -36,7 +36,7 @@ export const StyledContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-
+	height: 60vh;
 	h2 {
 		text-align: center;
 		color: #1976d2;
@@ -77,6 +77,7 @@ export const StyledContainer = styled.div`
 		}
 	}
 	@media (max-width: 600px) {
+		height: auto;
 		.descriptionSection {
 			display: block;
 		}

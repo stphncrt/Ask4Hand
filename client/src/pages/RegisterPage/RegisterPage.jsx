@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import styled from "styled-components";
 import { useFormik } from "formik";
 import {
 	Button,
@@ -16,24 +16,6 @@ import AppContext from "../../context/AppContext";
 import { getLatLng } from "../../api/GetLatLng";
 import searchBackgroundImage from "../../../assets/search-bar-background.jpeg";
 
-const styleFunc = makeStyles({
-	wrapper: {
-		// margin: "3rem auto",
-		boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
-		padding: "3rem",
-		backgroundColor: "white",
-	},
-	text: {
-		margin: "1rem 0rem",
-		textAlign: "center",
-		fontSize: "1.4rem",
-	},
-	page: {
-		padding: "5rem",
-		backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${searchBackgroundImage})`,
-	},
-});
-
 const RegisterPage = () => {
 	const { titles, getTitles, postWorker } = useContext(AppContext);
 	const [imageList, setImageList] = useState([""]);
@@ -42,7 +24,6 @@ const RegisterPage = () => {
 	useEffect(() => {
 		getTitles("/occupations");
 	}, []);
-	const signUpStyles = styleFunc();
 	const phoneRegExp =
 		/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -115,11 +96,9 @@ const RegisterPage = () => {
 	};
 
 	return (
-		<div className={signUpStyles.page}>
-			<Container className={signUpStyles.wrapper} maxWidth="sm">
-				<Typography className={signUpStyles.text}>
-					Pleaser enter your credentials to get registered..
-				</Typography>
+		<StyledWrapper>
+			<Container class="container" maxWidth="sm">
+				<Typography class="text">Pleaser enter your credentials to get registered..</Typography>
 				<form onSubmit={formik.handleSubmit}>
 					<Grid container spacing={3}>
 						<Grid item xs={6}>
@@ -212,30 +191,10 @@ const RegisterPage = () => {
 							</Grid>
 						))}
 						<Grid item xs={12}>
-							<Button variant="contained" color="primary" onClick={addImageInputField}>
+							<Button variant="contained" color="primary" onClick={addImageInputField} fullWidth>
 								Add Image
 							</Button>
 						</Grid>
-						{/* <Grid item xs={12}>
-            <InputLabel id="demo-simple-select-label">Category</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              variant="outlined"
-              value="Category"
-              label="Category"
-              name="title"
-              fullWidth
-              error={formik.errors.category}
-              helperText={formik.errors.category}
-            >
-              {titles?.map((title) => (
-                <MenuItem value={title} key={title}>
-                  {title}
-                </MenuItem>
-              ))}
-            </Select>
-          </Grid> */}
 						<Grid item xs={12}>
 							<TextField
 								id="outlined-multiline-static"
@@ -340,8 +299,37 @@ const RegisterPage = () => {
 					</Grid>
 				</form>
 			</Container>
-		</div>
+		</StyledWrapper>
 	);
 };
 
 export default RegisterPage;
+
+export const StyledWrapper = styled.div`
+	padding: 5rem;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+		url(${searchBackgroundImage});
+
+	.container {
+		width: 70%;
+		box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+		padding: 3rem;
+		background-color: white;
+		margin: 0 auto;
+	}
+	.text {
+		margin: 1rem 0rem;
+		text-align: center;
+		font-size: 1.4rem;
+	}
+	@media (max-width: 600px) {
+		padding: 0;
+		.container {
+			width: 100%;
+			padding: 0.5rem;
+		}
+		.text {
+			font-size: 1rem;
+		}
+	}
+`;

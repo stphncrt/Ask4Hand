@@ -32,6 +32,7 @@ export const StyledContainer = styled.div`
 	flex-direction: column;
 	padding: 1.5rem 0rem;
 	background-color: #f1faee;
+	height: 60vh;
 
 	.category {
 		display: flex;
@@ -45,6 +46,7 @@ export const StyledContainer = styled.div`
 		color: #1976d2;
 	}
 	@media (max-width: 600px) {
+		height: auto;
 		.category {
 			flex-wrap: wrap;
 		}
