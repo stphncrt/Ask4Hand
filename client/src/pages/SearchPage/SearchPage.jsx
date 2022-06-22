@@ -13,19 +13,13 @@ function SearchPage() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
     libraries,
   });
-  const {
-    workerList,
-    getWorkerByOccupation,
-    isLoading,
-    occupationIds,
-    getTitles,
-    titles,
-  } = useContext(AppContext);
+  const { workerList, isLoading, getTitles, getWorkers, titles } =
+    useContext(AppContext);
   const displayPagination = workerList?.length === 0 ? "none" : "block";
 
   useEffect(() => {
     getTitles("/occupations");
-    getWorkerByOccupation("/search", occupationIds);
+    getWorkers("/filter");
   }, []);
 
   return (

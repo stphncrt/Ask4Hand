@@ -103,25 +103,9 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  const getWorkerByOccupation = async (endpoint) => {
+  const getWorkers = async (endpoint) => {
     try {
       setIsLoading(true);
-      const response = await axios.post(
-        `${process.env.BASE_SERVER_URL}/api/worker/${endpoint}`,
-        { occupationIds }
-      );
-      setWorkerList(response.data.result);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const getWorkerByFilter = async (endpoint) => {
-    try {
-      setIsLoading(true);
-      //console.log(data);
       const response = await axios.post(
         `${process.env.BASE_SERVER_URL}/api/worker/${endpoint}`,
         { occupationIds, city }
@@ -151,8 +135,7 @@ export const AppProvider = ({ children }) => {
         getCategories,
         postWorker,
         updateWorker,
-        getWorkerByOccupation,
-        getWorkerByFilter,
+        getWorkers,
         setCity,
       }}
     >
