@@ -93,7 +93,6 @@ export const AppProvider = ({ children }) => {
         { withCredentials: true }
       );
       setWorker(response?.data?.result);
-      console.log(response?.data);
       toast.success(response?.data?.msg);
       setTimeout(() => {
         navigate("/");
