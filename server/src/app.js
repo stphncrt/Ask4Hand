@@ -15,7 +15,11 @@ const app = express();
 // Tell express to use the json middleware
 app.use(express.json());
 // Allow everyone to access our API. In a real application, we would need to restrict this!
-app.use(cors());
+const corsConfig = {
+  origin: true,
+  credentials: true,
+};
+app.use(cors(corsConfig));
 app.use(cookieParser());
 
 /****** Attach routes ******/

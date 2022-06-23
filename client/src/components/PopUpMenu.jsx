@@ -5,6 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import AppContext from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export default function MenuPopupState() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export default function MenuPopupState() {
       {(popupState) => (
         <React.Fragment>
           <Button variant="contained" {...bindTrigger(popupState)}>
-            {worker.firstName} {worker.lastName}
+            {worker.firstName} {worker.lastName} <KeyboardArrowDownIcon />
           </Button>
           <Menu {...bindMenu(popupState)}>
             <MenuItem
