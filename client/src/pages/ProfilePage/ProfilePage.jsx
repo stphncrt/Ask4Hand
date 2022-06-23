@@ -38,7 +38,6 @@ const ProfilePage = () => {
   const { titles, getTitles, updateWorker, worker } = useContext(AppContext);
   const [imageList, setImageList] = useState([""]);
   const [profileImage, setProfileImage] = useState([""]);
-
   useEffect(() => {
     getTitles("/occupations");
   }, []);
@@ -78,16 +77,17 @@ const ProfilePage = () => {
 
   const formik = useFormik({
     initialValues: {
-      firstName: worker.firstName,
-      lastName: worker.lastName,
-      occupationId: worker.occupationId,
-      email: worker.email,
-      phoneNumber: worker.phoneNumber,
-      description: worker.description,
-      postalCode: worker.postalCode,
-      city: worker.city,
-      hourlyRate: worker.hourlyRate,
-      workRange: worker.workRange,
+      firstName: worker?.firstName,
+      lastName: worker?.lastName,
+      occupationId: worker?.occupationId,
+      email: worker?.email,
+      profileImage: worker?.profileImage,
+      phoneNumber: worker?.phoneNumber,
+      description: worker?.description,
+      postalCode: worker?.postalCode,
+      city: worker?.city,
+      hourlyRate: worker?.hourlyRate,
+      workRange: worker?.workRange,
       password: "",
       validatePassword: "",
     },
@@ -101,7 +101,6 @@ const ProfilePage = () => {
           (title) => title._id === formik.values.occupationId
         )?.categoryId;
         delete newValues.validatePassword;
-
         updateWorker(`/profile/${worker._id}`, newValues);
       } catch (error) {
         return error;
@@ -123,7 +122,7 @@ const ProfilePage = () => {
     <div className={signUpStyles.page}>
       <Container className={signUpStyles.wrapper} maxWidth="sm">
         <Typography className={signUpStyles.text}>
-          Pleaser enter your credentials to get registered..
+          Update Your Credentials
         </Typography>
         <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={3}>
@@ -298,7 +297,7 @@ const ProfilePage = () => {
             </Grid>
             <Grid item xs={6}>
               <TextField
-                label="Create Password"
+                label="Update Password"
                 variant="outlined"
                 fullWidth
                 value={formik.values.password}

@@ -68,7 +68,8 @@ export const AppProvider = ({ children }) => {
       setIsLoading(true);
       const response = await axios.post(
         `${process.env.BASE_SERVER_URL}/api${endpoint}`,
-        data
+        data,
+        { withCredentials: true }
       );
       setWorker(response?.data?.result?.worker);
       toast.success(response?.data?.msg);
@@ -88,9 +89,10 @@ export const AppProvider = ({ children }) => {
       setIsLoading(true);
       const response = await axios.put(
         `${process.env.BASE_SERVER_URL}/api${endpoint}`,
-        data
+        data,
+        { withCredentials: true }
       );
-      setWorker(response?.data?.result?.worker);
+      setWorker(response?.data?.result);
       toast.success(response?.data?.msg);
       setTimeout(() => {
         navigate("/");
