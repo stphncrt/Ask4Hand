@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import AppContext from "../../context/AppContext";
@@ -7,7 +7,11 @@ import { Box, Button, Container } from "@material-ui/core";
 import styled from "styled-components";
 
 const ProfilePage = () => {
-  const { worker } = useContext(AppContext);
+  const { worker, titles } = useContext(AppContext);
+  const workerTitle = titles?.find(
+    (title) => title._id === worker.occupationId
+  ).name;
+  const [isEditActive, setIsEditActive] = useState(false);
   return (
     <StyledWrapper>
       <Box class="Box-Container">
@@ -16,7 +20,7 @@ const ProfilePage = () => {
           <Typography variant="h4">
             Name: {worker?.firstName} {worker?.lastName}
           </Typography>
-          <Typography variant="h4">Title: {worker?.title}</Typography>
+          <Typography variant="h4">Title: {workerTitle}</Typography>
           <Typography variant="h4">City: {worker?.city}</Typography>
           <Typography variant="h4">E-mail: {worker?.email}</Typography>
           <Typography variant="h4">
@@ -27,11 +31,20 @@ const ProfilePage = () => {
       <Typography variant="h4" p={2}>
         Description: {worker?.description}
       </Typography>
-      <Button style={{ maxWidth:"100px" }} type="submit" variant="contained" color="primary">
+      <Button
+        style={{ maxWidth: "100px" }}
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          setIsEditActive(!isEditActive);
+        }}
+      >
         Edit
       </Button>
+      <WorkerForm
+        className={`workerForm ${isEditActive && "workerForm-open"}`}
+      />
     </StyledWrapper>
-    // <WorkerForm />
   );
 };
 
@@ -59,5 +72,11 @@ export const StyledWrapper = styled(Box)`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+  .workerForm {
+    display: none;
+  }
+  .workerForm-open {
+    display: block;
   }
 `;

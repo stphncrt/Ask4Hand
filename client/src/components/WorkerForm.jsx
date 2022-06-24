@@ -42,7 +42,6 @@ const WorkerForm = () => {
 
   useEffect(() => {
     getTitles("/occupations");
-    console.log(worker);
   }, []);
 
   const signUpStyles = styleFunc();
