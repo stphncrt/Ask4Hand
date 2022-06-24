@@ -32,9 +32,8 @@ export default Categories;
 export const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 0rem;
   background-color: #f1faee;
-  height: 60vh;
+  padding: 5rem 0 7rem 0;
 
   .category {
     display: flex;
@@ -46,6 +45,8 @@ export const StyledContainer = styled.div`
   h2 {
     text-align: center;
     color: #1976d2;
+    margin-top: 0;
+    margin-bottom: 3rem;
   }
   @media (max-width: 600px) {
     height: auto;
