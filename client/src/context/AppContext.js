@@ -85,6 +85,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const updateWorker = async (endpoint, data) => {
+    console.log(endpoint);
     try {
       setIsLoading(true);
       const response = await axios.put(
@@ -94,9 +95,9 @@ export const AppProvider = ({ children }) => {
       );
       setWorker(response?.data?.result);
       toast.success(response?.data?.msg);
-      // setTimeout(() => {
-      //   navigate("/");
-      // }, 2000);
+      setTimeout(() => {
+        navigate("/");
+      }, 200);
     } catch (err) {
       setError(err.message);
       toast.error(err?.response?.data?.msg || "Something went wrong!");
