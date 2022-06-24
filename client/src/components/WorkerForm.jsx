@@ -2,38 +2,34 @@ import React, { useState, useContext, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import {
-  Button,
-  TextField,
-  Grid,
-  Container,
-  Select,
-  MenuItem,
-  InputLabel,
-  Typography,
+	Button,
+	TextField,
+	Grid,
+	Container,
+	Select,
+	MenuItem,
+	InputLabel,
+	Typography,
 } from "@mui/material";
 import { RegisterValidationSchema } from "../util/FormValidation";
 import AppContext from "../context/AppContext";
 import { getLatLng } from "../api/getlatlng";
-import searchBackgroundImage from "../../assets/search-bar-background.jpeg";
 
 const styleFunc = makeStyles({
-  wrapper: {
-    boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
-    padding: "3rem",
-    backgroundColor: "white",
-  },
-  text: {
-    margin: "1rem 0rem",
-    textAlign: "center",
-    fontSize: "1.4rem",
-  },
-  page: {
-    padding: "5rem",
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${searchBackgroundImage})`,
-  },
+	wrapper: {
+		boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+		padding: "3rem",
+		backgroundColor: "white",
+	},
+	text: {
+		margin: "1rem 0rem",
+		textAlign: "center",
+		fontSize: "1.4rem",
+	},
 });
 
 const WorkerForm = () => {
+
   const { titles, getTitles, updateWorker, postWorker, worker } =
     useContext(AppContext);
   const [images, setImages] = useState(worker ? worker.images : [""]);
@@ -357,6 +353,7 @@ const WorkerForm = () => {
       </Container>
     </div>
   );
+
 };
 
 export default WorkerForm;
