@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+
+import React, { useState, useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import AppContext from "../../context/AppContext";
@@ -8,11 +9,14 @@ import { Box, Button, Container } from "@material-ui/core";
 import styled from "styled-components";
 
 const ProfilePage = () => {
-	const { worker } = useContext(AppContext);
+	const { worker, titles } = useContext(AppContext);
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-
+  const workerTitle = titles?.find(
+    (title) => title._id === worker.occupationId
+  ).name;
+  
 	const style = {
 		position: "absolute",
 		top: "50%",
@@ -33,7 +37,7 @@ const ProfilePage = () => {
 					<Typography variant="h5">
 						Name: {worker?.firstName} {worker?.lastName}
 					</Typography>
-					<Typography variant="h5">Title: {worker?.title}</Typography>
+          <Typography variant="h5">Title: {workerTitle}</Typography>
 					<Typography variant="h5">City: {worker?.city}</Typography>
 					<Typography variant="h5">E-mail: {worker?.email}</Typography>
 					<Typography variant="h5">Phone Number: {worker?.phoneNumber}</Typography>
@@ -99,4 +103,5 @@ export const StyledWrapper = styled(Box)`
 		overflow: scroll;
 		box-shadow: 24;
 	} */
+
 `;
