@@ -8,35 +8,33 @@ import { useNavigate } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export default function MenuPopupState() {
-  const navigate = useNavigate();
-  const { worker, logoutWorker } = React.useContext(AppContext);
-  return (
-    <PopupState variant="popover" popupId="demo-popup-menu">
-      {(popupState) => (
-        <React.Fragment>
-          <Button variant="contained" {...bindTrigger(popupState)}>
-            {worker.firstName} {worker.lastName} <KeyboardArrowDownIcon />
-          </Button>
-          <Menu {...bindMenu(popupState)}>
-            <MenuItem
-              onClick={() => {
-                navigate("/profilePage");
-                popupState.close;
-              }}
-            >
-              My Profile
-            </MenuItem>
-            <MenuItem
-              onClick={() => {
-                logoutWorker("/auth/logout");
-                popupState.close;
-              }}
-            >
-              Logout
-            </MenuItem>
-          </Menu>
-        </React.Fragment>
-      )}
-    </PopupState>
-  );
+	const navigate = useNavigate();
+	const { worker, logoutWorker } = React.useContext(AppContext);
+	return (
+		<PopupState variant="popover" popupId="demo-popup-menu">
+			{(popupState) => (
+				<React.Fragment>
+					<Button variant="contained" {...bindTrigger(popupState)}>
+						{worker.firstName} {worker.lastName} <KeyboardArrowDownIcon />
+					</Button>
+					<Menu {...bindMenu(popupState)}>
+						<MenuItem
+							onClick={() => {
+								navigate("/profilePage");
+								popupState.close;
+							}}>
+							My Profile
+						</MenuItem>
+						<MenuItem
+							onClick={() => {
+								logoutWorker("/auth/logout");
+								popupState.close;
+							}}>
+							Logout
+						</MenuItem>
+					</Menu>
+				</React.Fragment>
+			)}
+		</PopupState>
+	);
 }
