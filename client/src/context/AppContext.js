@@ -85,7 +85,6 @@ export const AppProvider = ({ children }) => {
   };
 
   const updateWorker = async (endpoint, data) => {
-    console.log(endpoint);
     try {
       setIsLoading(true);
       const response = await axios.put(
