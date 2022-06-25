@@ -34,11 +34,10 @@ function DescriptionSection() {
 export default DescriptionSection;
 export const StyledContainer = styled.div`
   background-color: #ebf1e9;
-  padding: 1rem;
+  padding: 5rem 0 7rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 60vh;
   h2 {
     text-align: center;
     color: #1976d2;
