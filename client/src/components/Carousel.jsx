@@ -13,7 +13,7 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 function Carousel({ images }) {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+  const maxSteps = images ? images.length : 0;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -46,7 +46,7 @@ function Carousel({ images }) {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {images.map((step, index) => (
+        {images?.map((step, index) => (
           <div key={index}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
