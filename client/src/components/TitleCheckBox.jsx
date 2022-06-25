@@ -84,7 +84,6 @@ export const StyledFormGroup = styled.div`
   gap: 1rem;
   height: 70vh;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  /* width: 20rem; */
   padding: 1rem;
   background-color: "blue";
   .form-group {
