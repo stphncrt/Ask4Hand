@@ -6,7 +6,7 @@ import AppContext from "../../context/AppContext";
 
 const profileImageICon =
   "https://previews.123rf.com/images/koblizeek/koblizeek2001/koblizeek200100050/138262629-man-icon-profile-member-user-perconal-symbol-vector-on-white-isolated-background-.jpg";
-const mapContainerStyle = { width: "100%", height: "100%" };
+const mapContainerStyle = { width: "100%", height: "70vh" };
 const options = {
   disableDefaultUI: true,
   zoomControl: true,
