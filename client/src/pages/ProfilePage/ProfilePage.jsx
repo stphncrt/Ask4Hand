@@ -4,8 +4,10 @@ import Typography from "@mui/material/Typography";
 import AppContext from "../../context/AppContext";
 import WorkerForm from "../../components/WorkerForm";
 import Modal from "@mui/material/Modal";
-import { Box, Button, Container } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import styled from "styled-components";
+import { Grid } from "@mui/material";
+import Carousel from "../../components/Carousel";
 
 const ProfilePage = () => {
   const { worker, titles } = useContext(AppContext);
@@ -29,33 +31,103 @@ const ProfilePage = () => {
   };
 
   return (
-    <StyledWrapper>
-      <Box class="Box-Container">
-        <Avatar src={worker?.profileImage} class="avatar"></Avatar>
-        <Container class="typography">
+    // <StyledWrapper>
+    //   <Box class="Box-Container">
+    //     <Avatar src={worker?.profileImage} class="avatar"></Avatar>
+    //     <Container class="typography">
+    //       <Typography variant="h5">
+    //         Name: {worker?.firstName} {worker?.lastName}
+    //       </Typography>
+    //       <Typography variant="h5">Title: {workerTitle}</Typography>
+    //       <Typography variant="h5">City: {worker?.city}</Typography>
+    //       <Typography variant="h5">E-mail: {worker?.email}</Typography>
+    //       <Typography variant="h5">
+    //         Phone Number: {worker?.phoneNumber}
+    //       </Typography>
+    //     </Container>
+    //   </Box>
+    //   <Typography variant="h6" p={2}>
+    //     Description: {worker?.description}
+    //   </Typography>
+    //   <Button
+    //     style={{ maxWidth: "100px", textAlign: "center" }}
+    //     type="submit"
+    //     variant="contained"
+    //     color="primary"
+    //     onClick={handleOpen}
+    //   >
+    //     Edit
+    //   </Button>
+    //   <Modal
+    //     open={open}
+    //     onClose={handleClose}
+    //     aria-labelledby="modal-modal-title"
+    //     aria-describedby="modal-modal-description"
+    //   >
+    //     <Box sx={style}>
+    //       <WorkerForm />
+    //     </Box>
+    //   </Modal>
+    // </StyledWrapper>
+    <Box sx={{ flexGrow: 1, padding: "5rem 3rem" }}>
+      <Grid container spacing={5} gap={1}>
+        <Grid
+          item
+          xs={12}
+          md={4}
+          sx={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
+        >
+          <Avatar src={worker?.profileImage} class="avatar"></Avatar>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={4}
+          justifyContent="center"
+          sx={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
+        >
           <Typography variant="h5">
-            Name: {worker?.firstName} {worker?.lastName}
+            Name: {worker?.firstName} {worker?.lastName}{" "}
           </Typography>
-          <Typography variant="h5">Title: {workerTitle}</Typography>
-          <Typography variant="h5">City: {worker?.city}</Typography>
-          <Typography variant="h5">E-mail: {worker?.email}</Typography>
-          <Typography variant="h5">
+          <Typography variant="h6">Title: {workerTitle}</Typography>
+          <Typography variant="h6">City: {worker?.city}</Typography>
+          <Typography variant="h6">E-mail: {worker?.email}</Typography>
+          <Typography variant="h6">
             Phone Number: {worker?.phoneNumber}
           </Typography>
-        </Container>
-      </Box>
-      <Typography variant="h6" p={2}>
-        Description: {worker?.description}
-      </Typography>
-      <Button
-        style={{ maxWidth: "100px", textAlign: "center" }}
-        type="submit"
-        variant="contained"
-        color="primary"
-        onClick={handleOpen}
-      >
-        Edit
-      </Button>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={4}
+          sx={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
+        >
+          <Typography variant="h6" p={2}>
+            About me
+          </Typography>
+          <Typography>{worker?.description}</Typography>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          justifyContent="center"
+          sx={{ height: "400px" }}
+        >
+          <Carousel images={worker?.images} />
+        </Grid>
+
+        <Grid item xs={6} md={3} lg={1} justifyContent="center">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            onClick={handleOpen}
+          >
+            Edit
+          </Button>
+        </Grid>
+      </Grid>
       <Modal
         open={open}
         onClose={handleClose}
@@ -66,7 +138,7 @@ const ProfilePage = () => {
           <WorkerForm />
         </Box>
       </Modal>
-    </StyledWrapper>
+    </Box>
   );
 };
 
@@ -81,7 +153,6 @@ export const StyledWrapper = styled(Box)`
 
   .Box-Container {
     display: flex;
-    flex-direction: row;
     gap: 2rem;
     align-items: flex-start;
     padding: 1rem;

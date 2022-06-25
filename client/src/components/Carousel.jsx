@@ -2,7 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper";
-import Paper from "@mui/material/Paper";
+// import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
@@ -28,18 +28,18 @@ function Carousel({ images }) {
   };
 
   return (
-    <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-      <Paper
+    <Box sx={{ flexGrow: 1 }}>
+      {/* <Paper
         square
         elevation={0}
         sx={{
           display: "flex",
           alignItems: "center",
-          height: 50,
+          height: 150,
           pl: 2,
           bgcolor: "background.default",
         }}
-      ></Paper>
+      ></Paper> */}
       <AutoPlaySwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={activeStep}
@@ -52,10 +52,9 @@ function Carousel({ images }) {
               <Box
                 component="img"
                 sx={{
-                  height: 255,
+                  height: "100%",
                   display: "block",
-                  maxWidth: 400,
-                  overflow: "hidden",
+                  // overflow: "hidden",
                   width: "100%",
                 }}
                 src={step}
