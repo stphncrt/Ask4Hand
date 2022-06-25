@@ -49,14 +49,15 @@ export const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 0 0.5rem;
   text-align: center;
   justify-content: center;
   background-color: #f1faee;
+  padding: 3rem 0 5rem 0;
+
   h2 {
     text-align: center;
     color: #1976d2;
-    margin-left: -4rem;
+    /* margin-left: -4rem; */
   }
   h3 {
     color: #1976d2;
@@ -64,10 +65,8 @@ export const StyledContainer = styled.div`
   }
   .stepperWrapper {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    gap: 2rem;
-    margin: 1rem;
+    justify-content: space-around;
   }
   .step {
     display: flex;

@@ -69,8 +69,8 @@ export default function FreeSoloCreateOption() {
           return option.name;
         }}
         renderOption={(props, option) => <li {...props}>{option.name}</li>}
-        sx={{ width: 300 }}
-        style={{ width: 500, backgroundColor: "#fff" }}
+        // sx={{ width: 300 }}
+        style={{ width: 500, marginLeft: 20, backgroundColor: "#fff" }}
         freeSolo
         renderInput={(params) => (
           <TextField
@@ -82,7 +82,12 @@ export default function FreeSoloCreateOption() {
         )}
       />
       <Button
-        style={{ height: 56, width: 200, backgroundColor: "#e63946" }}
+        style={{
+          height: 56,
+          width: 200,
+          backgroundColor: "#e63946",
+          marginRight: 20,
+        }}
         variant="contained"
         onClick={() => {
           setOccupationIds([...occupationIds, value._id]);

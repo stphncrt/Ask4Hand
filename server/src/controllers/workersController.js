@@ -8,7 +8,8 @@ export const getWorkers = async (req, res) => {
   try {
     const workers = await Worker.find({
       occupationId: { $in: req.body.occupationIds },
-    });
+    }).sort({ hourlyRate: 1 });
+
     if (req.body.city) {
       const workersWithDistance = await Promise.all(
         workers.map(async (worker) => {
