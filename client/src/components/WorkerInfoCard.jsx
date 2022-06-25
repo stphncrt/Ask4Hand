@@ -44,10 +44,8 @@ const useStyles = makeStyles(() => ({
 // }));
 
 export default function WorkerInfoCard({ worker, titles }) {
-  const classes = useStyles();
-  const selectedTitle = titles?.find(
-    (title) => title._id === worker.occupationId
-  );
+	const classes = useStyles();
+	const selectedTitle = titles?.find((title) => title._id === worker.occupationId);
 
   return (
     

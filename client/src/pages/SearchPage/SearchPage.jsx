@@ -11,31 +11,27 @@ import { Box, Grid, Typography } from "@mui/material";
 
 const libraries = ["places"];
 function SearchPage() {
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
-    libraries,
-  });
-  const { workerList, isLoading, getTitles, getWorkers, titles } =
-    useContext(AppContext);
+	const { isLoaded, loadError } = useLoadScript({
+		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
+		libraries,
+	});
+	const { workerList, isLoading, getTitles, getWorkers, titles } = useContext(AppContext);
 
-  const [currentPage, setCurrentPage] = React.useState(1);
+	const [currentPage, setCurrentPage] = React.useState(1);
 
-  const handleChange = (event, value) => {
-    setCurrentPage(value);
-  };
+	const handleChange = (event, value) => {
+		setCurrentPage(value);
+	};
 
-  useEffect(() => {
-    getTitles("/occupations");
-    getWorkers("/filter");
-  }, []);
+	useEffect(() => {
+		getTitles("/occupations");
+		getWorkers("/filter");
+	}, []);
 
-  const workersPerPage = 3;
-  const indexOfLastWorker = currentPage * workersPerPage;
-  const indexOfFirstWorker = indexOfLastWorker - workersPerPage;
-  const currentWorkers = workerList?.slice(
-    indexOfFirstWorker,
-    indexOfLastWorker
-  );
+	const workersPerPage = 3;
+	const indexOfLastWorker = currentPage * workersPerPage;
+	const indexOfFirstWorker = indexOfLastWorker - workersPerPage;
+	const currentWorkers = workerList?.slice(indexOfFirstWorker, indexOfLastWorker);
 
   return (
     <Box sx={{ flexGrow: 1, padding: "30px" }}>
@@ -163,3 +159,4 @@ export default SearchPage;
 //     }
 //   }
 // `;
+
