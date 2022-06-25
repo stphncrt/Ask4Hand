@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { GoogleMap, Marker, InfoWindow, Circle } from "@react-google-maps/api";
-import { Paper, Typography } from "@mui/material";
+import { Paper, Typography, Chip } from "@mui/material";
 import MapStyle from "./Map.style.js";
+import AppContext from "../../context/AppContext";
 
+const profileImageICon =
+  "https://previews.123rf.com/images/koblizeek/koblizeek2001/koblizeek200100050/138262629-man-icon-profile-member-user-perconal-symbol-vector-on-white-isolated-background-.jpg";
 const mapContainerStyle = { width: "100%", height: "100%" };
 const options = {
   disableDefaultUI: true,
@@ -11,6 +14,10 @@ const options = {
   styles: MapStyle,
 };
 const Map = ({ workerList }) => {
+  const { getTitles, titles } = useContext(AppContext);
+  useEffect(() => {
+    getTitles("/occupations");
+  }, []);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [circle, setCircle] = useState(null);
   const optionsForCircle = {
@@ -60,18 +67,39 @@ const Map = ({ workerList }) => {
           <Paper
             elevation={3}
             style={{
-              padding: "10px",
+              padding: "5px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              width: "200px",
+              width: "120px",
               cursor: "pointer",
             }}
-            //to be able to pass the clicked one smootly on List
           >
-            <Typography variant="subtitle2" gutterBottom>
+            <img
+              alt=""
+              src={
+                selectedMarker?.profileImage
+                  ? selectedMarker.profileImage
+                  : profileImageICon
+              }
+            />
+            <Typography variant="subtitle2">
               {selectedMarker?.firstName} {selectedMarker?.lastName}
             </Typography>
+            <Typography variant="subtitle3" gutterBottom>
+              {
+                titles?.find(
+                  (title) => title?._id === selectedMarker?.occupationId
+                )?.name
+              }
+            </Typography>
+            <Chip
+              variant="outlined"
+              color="success"
+              key={selectedMarker?.hourlyRate}
+              size="small"
+              label={`${selectedMarker?.hourlyRate} € per hour`}
+            />
           </Paper>
         </InfoWindow>
       ) : null}
