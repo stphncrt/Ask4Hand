@@ -11,7 +11,7 @@ import {
   InputLabel,
   Typography,
 } from "@mui/material";
-import { RegisterValidationSchema } from "../util/FormValidation";
+import { RegisterValidationSchema } from "../util/formValidation";
 import AppContext from "../context/AppContext";
 import { getLatLng } from "../api/getlatlng";
 
@@ -222,7 +222,6 @@ const WorkerForm = () => {
                 fullWidth
                 multiline
                 rows={4}
-                defaultValue="Describe Your Job"
                 value={formik.values.description}
                 onChange={formik.handleChange}
                 name="description"
