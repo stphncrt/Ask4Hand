@@ -4,8 +4,6 @@ import { useFormik } from "formik";
 import AppContext from "../../context/AppContext";
 import { Button, TextField, Grid, Container, Typography } from "@mui/material";
 import * as Yup from "yup";
-import styled from "styled-components";
-import searchBackgroundImage from "../../../assets/search-bar-background.jpeg";
 import { StyledWrapper } from "../RegisterPage/RegisterPage";
 
 const styleFunc = makeStyles({
