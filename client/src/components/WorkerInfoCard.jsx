@@ -13,24 +13,27 @@ export default function WorkerInfoCard({ worker, titles }) {
   return (
     <Grid
       container
-      spacing={2}
-      sx={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", height: "20rem" }}
+      sx={{
+        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+        height: "23rem",
+        padding: "1rem",
+      }}
     >
-      <Grid item xs={6} md={2} sx={{ margin: "auto" }}>
+      <Grid item xs={6} md={6} sx={{ margin: "auto" }}>
         <Avatar
           src={worker?.profileImage}
           sx={{ bgcolor: red[500], width: 92, height: 92 }}
         ></Avatar>
       </Grid>
-      <Grid item xs={6} md={2} sx={{ margin: "auto" }}>
+      <Grid item xs={6} md={6} sx={{ margin: "auto" }}>
         <Typography color="text.primary" sx={{ fontWeight: "bold" }}>
           {worker?.firstName} {worker?.lastName}
         </Typography>
-      </Grid>
-      <Grid item xs={7} md={4} sx={{ margin: "auto" }}>
         <Typography variant="subtitle2" color="text.secondary">
           {selectedTitle.name}
         </Typography>
+      </Grid>
+      <Grid item xs={6} md={6} sx={{ margin: "auto" }}>
         <Typography variant="subtitle2" color="text.secondary">
           {worker?.email}
         </Typography>
@@ -38,16 +41,16 @@ export default function WorkerInfoCard({ worker, titles }) {
           Tel: {worker?.phoneNumber}
         </Typography>
       </Grid>
-      <Grid item xs={5} md={4} sx={{ margin: "auto" }}>
+      <Grid item xs={6} md={6} sx={{ margin: "auto" }}>
         <Typography variant="subtitle2" color="text.secondary">
           Hourly Rate: {worker?.hourlyRate} €
         </Typography>
         <Typography variant="subtitle2" color="text.secondary">
           City: {worker?.city}
         </Typography>
-        <Typography variant="subtitle2" color="text.secondary">
+        {/*  <Typography variant="subtitle2" color="text.secondary">
           Work Range: {worker?.workRange}
-        </Typography>
+        </Typography> */}
       </Grid>
       <Grid
         item
@@ -56,11 +59,11 @@ export default function WorkerInfoCard({ worker, titles }) {
           overflow: "hidden",
           textOverflow: "ellipsis",
           display: "-webkit-box",
-          "	-webkit-line-clamp": "3",
+          "	-webkit-line-clamp": "5",
           "	-webkit-box-orient": "vertical",
         }}
       >
-        <Typography variant="paragraph" color="text.secondary">
+        <Typography variant="body2" color="text.secondary">
           {worker?.description}
         </Typography>
       </Grid>

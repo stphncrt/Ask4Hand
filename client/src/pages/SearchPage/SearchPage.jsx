@@ -28,7 +28,7 @@ function SearchPage() {
     getWorkers("/filter");
   }, []);
 
-  const workersPerPage = 3;
+  const workersPerPage = 6;
   const indexOfLastWorker = currentPage * workersPerPage;
   const indexOfFirstWorker = indexOfLastWorker - workersPerPage;
   const currentWorkers = workerList?.slice(
@@ -37,7 +37,7 @@ function SearchPage() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1, padding: "30px" }}>
+    <Box sx={{ flexGrow: 1, padding: "2rem" }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={3} lg={3}>
           <TitleCheckBox />
