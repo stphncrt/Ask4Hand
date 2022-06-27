@@ -24,16 +24,16 @@ export default function MenuPopupState() {
         <MenuItem
           onClick={() => {
             navigate("/profilePage");
-            popupState.close;
           }}
+          onMouseDown={popupState.close}
         >
           MyProfile
         </MenuItem>
         <MenuItem
           onClick={() => {
             logoutWorker("/auth/logout");
-            popupState.close;
           }}
+          onMouseDown={popupState.close}
         >
           Logout
         </MenuItem>

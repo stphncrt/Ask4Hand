@@ -4,16 +4,26 @@ import Typography from "@mui/material/Typography";
 import AppContext from "../../context/AppContext";
 import WorkerForm from "../../components/WorkerForm";
 import Modal from "@mui/material/Modal";
-import { Box, Button } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { Grid, Card, CardContent } from "@mui/material";
 import Carousel from "../../components/Carousel";
 
 const ProfilePage = () => {
-	const { worker, titles } = useContext(AppContext);
-	const [open, setOpen] = useState(false);
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
-	const workerTitle = titles?.find((title) => title._id === worker?.occupationId)?.name;
+
+  const [isHovering, setIsHovering] = useState(false);
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+  const { worker, titles } = useContext(AppContext);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const workerTitle = titles?.find(
+    (title) => title._id === worker?.occupationId
+  )?.name;
 
 	const style = {
 		position: "absolute",
