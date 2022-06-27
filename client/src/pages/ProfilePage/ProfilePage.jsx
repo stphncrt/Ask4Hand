@@ -4,12 +4,19 @@ import Typography from "@mui/material/Typography";
 import AppContext from "../../context/AppContext";
 import WorkerForm from "../../components/WorkerForm";
 import Modal from "@mui/material/Modal";
-import { Box, Button } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { Grid, Card, CardContent } from "@mui/material";
 import Carousel from "../../components/Carousel";
 import Footer from "../../components/Footer";
 
 const ProfilePage = () => {
+  const [isHovering, setIsHovering] = useState(false);
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
   const { worker, titles } = useContext(AppContext);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -34,18 +41,22 @@ const ProfilePage = () => {
     <>
       <Box sx={{ flexGrow: 1, padding: "2rem" }}>
         <Grid container>
-          <Button
-            size="large"
+          <a
             style={{
               margin: "1.5rem auto",
+              padding: "0.7rem 2rem",
+              backgroundColor: isHovering ? "#205ba3" : "#2d76d2",
+              fontWeight: "bold",
+              border: "1px solid #2d76d2",
+              color: "white",
+              cursor: isHovering ? "pointer" : "none",
             }}
-            type="submit"
-            variant="contained"
-            color="primary"
-            onClick={handleOpen}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={() => handleOpen()}
           >
             Edit Profile
-          </Button>
+          </a>
         </Grid>
         <Avatar
           src={worker?.profileImage}
