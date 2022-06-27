@@ -52,9 +52,7 @@ export const AppProvider = ({ children }) => {
       );
       setWorker(response.data.result);
       toast.success(response?.data?.msg);
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      navigate("/");
     } catch (err) {
       setError(err.message);
       toast.error(err?.response?.data?.msg || "Something went wrong!");
@@ -75,7 +73,7 @@ export const AppProvider = ({ children }) => {
       toast.success(response?.data?.msg);
       setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, 500);
     } catch (err) {
       setError(err.message);
       toast.error(err?.response?.data?.msg || "Something went wrong!");
@@ -96,7 +94,7 @@ export const AppProvider = ({ children }) => {
       toast.success(response?.data?.msg);
       setTimeout(() => {
         navigate("/");
-      }, 200);
+      }, 500);
     } catch (err) {
       setError(err.message);
       toast.error(err?.response?.data?.msg || "Something went wrong!");

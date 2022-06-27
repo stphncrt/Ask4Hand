@@ -7,6 +7,7 @@ import WorkerInfoCard from "../../components/WorkerInfoCard";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { Box, Grid, Typography } from "@mui/material";
+import Footer from "../../components/Footer";
 
 const libraries = ["places"];
 function SearchPage() {
@@ -37,48 +38,51 @@ function SearchPage() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1, padding: "2rem" }}>
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={3} lg={3}>
-          <TitleCheckBox />
-        </Grid>
-        <Grid item xs={12} md={9} lg={9}>
-          {loadError ? (
-            "error"
-          ) : !isLoaded ? (
-            "loading..."
+    <>
+      <Box sx={{ flexGrow: 1, padding: "2rem" }}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={3} lg={3}>
+            <TitleCheckBox />
+          </Grid>
+          <Grid item xs={12} md={9} lg={9}>
+            {loadError ? (
+              "error"
+            ) : !isLoaded ? (
+              "loading..."
+            ) : (
+              <Map workerList={workerList} />
+            )}
+          </Grid>
+
+          {isLoading ? (
+            <Typography variant="h4">Loading...</Typography>
+          ) : currentWorkers?.length === 0 ? (
+            <Typography variant="h4" sx={{ margin: "3rem auto" }}>
+              There is no worker that fits your criteria.
+            </Typography>
           ) : (
-            <Map workerList={workerList} />
+            currentWorkers?.map((worker) => (
+              <Grid item spacing={2} xs={12} md={6} lg={4} key={worker._id}>
+                <WorkerInfoCard worker={worker} titles={titles} />
+              </Grid>
+            ))
+          )}
+          {workerList?.length > 0 && (
+            <Grid item xs={12} md={12}>
+              <Stack spacing={2}>
+                <Pagination
+                  sx={{ margin: "0 auto" }}
+                  count={Math.ceil(workerList?.length / workersPerPage)}
+                  currentPage={currentPage}
+                  onChange={handleChange}
+                />
+              </Stack>
+            </Grid>
           )}
         </Grid>
-
-        {isLoading ? (
-          <Typography variant="h4">Loading...</Typography>
-        ) : currentWorkers?.length === 0 ? (
-          <Typography variant="h4" sx={{ margin: "3rem auto" }}>
-            There is no worker that fits your criteria.
-          </Typography>
-        ) : (
-          currentWorkers?.map((worker) => (
-            <Grid item spacing={2} xs={12} md={6} lg={4} key={worker._id}>
-              <WorkerInfoCard worker={worker} titles={titles} />
-            </Grid>
-          ))
-        )}
-        {workerList?.length > 0 && (
-          <Grid item xs={12} md={12}>
-            <Stack spacing={2}>
-              <Pagination
-                sx={{ margin: "0 auto" }}
-                count={Math.ceil(workerList?.length / workersPerPage)}
-                currentPage={currentPage}
-                onChange={handleChange}
-              />
-            </Stack>
-          </Grid>
-        )}
-      </Grid>
-    </Box>
+      </Box>
+      <Footer />
+    </>
   );
 }
 

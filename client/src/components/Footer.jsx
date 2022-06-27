@@ -1,96 +1,74 @@
 import React from "react";
-import styled from "styled-components";
+import { Grid, Typography, Link } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import styled from "styled-components";
 
 function Footer() {
   return (
-    <StyledWrapper>
-      <div className="container">
-        <h3 className="title"> COMPANY </h3>
-        <p>
-          <a href="" className="link">
+    <StyledFooter>
+      <Grid container className="wrapper">
+        <Grid item xs={12} md={4} className="section">
+          <Typography variant="h6" className="title">
+            COMPANY
+          </Typography>
+          <Link href="" className="link">
             About us
-          </a>
-        </p>
-        <p>
-          <a href="" className="link">
-            Terms
-          </a>
-        </p>
-        <p>
-          <a href="" className="link">
-            Help
-          </a>
-        </p>
-      </div>
-      <div className="container">
-        <h3 className="title"> WORK WITH US </h3>
-        <a href="" className="link">
-          Advertise
-        </a>
-      </div>
-      <div className="container">
-        <h3 className="title"> CONNECT </h3>
-        <div className="iconContainer">
-          <StyledFacebookIcon color="primary" className="icon" />
-          <YouTubeIcon color="error" className="icon" />
-          <TwitterIcon color="primary" className="icon" />
-        </div>
-      </div>
-    </StyledWrapper>
+          </Link>
+        </Grid>
+        <Grid item xs={12} md={4} className="section">
+          <Typography variant="h6" className="title">
+            INFO
+          </Typography>
+          <Link
+            href="https://github.com/HackYourFuture/class35-project-zzpers"
+            className="link"
+          >
+            Made with <FavoriteIcon color="error" fontSize="small" /> by
+            LastNodeBenders
+          </Link>
+        </Grid>
+        <Grid item xs={12} md={4} className="section">
+          <Typography variant="h6" className="title">
+            CONNECT
+          </Typography>
+          <Grid>
+            <FacebookIcon color="primary" fontSize="large" className="icon" />
+            <YouTubeIcon color="error" fontSize="large" className="icon" />
+            <TwitterIcon color="primary" fontSize="large" className="icon" />
+          </Grid>
+        </Grid>
+      </Grid>
+    </StyledFooter>
   );
 }
 
 export default Footer;
-export const StyledWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 10rem;
-  padding: 1rem 6rem;
-  background-color: #1d3557;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: baseline;
 
-  .image {
-    width: 8rem;
+export const StyledFooter = styled.div`
+  background-color: #1d3557;
+  padding: 1.5rem 0rem;
+
+  .section {
+    margin: 1rem 0;
+    text-align: center;
   }
   .title {
     color: #a8dadc;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 0.4rem;
   }
   .link {
-    text-decoration: none;
-    text-align: center;
-    color: #f1faee;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-  .iconContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 0.3rem;
-    justify-content: center;
+    color: #fff;
   }
   .icon {
+    margin: 0 0.4rem;
     background-color: #fff;
     border-radius: 50%;
-    padding: 3px;
+    padding: 4px;
     cursor: pointer;
   }
-  @media screen and (max-width: 600px) {
-    flex-direction: column;
-    gap: 2rem;
+  .icon:hover {
+    background-color: #e7e7e7;
   }
-`;
-
-export const StyledFacebookIcon = styled(FacebookIcon)`
-  background-color: #fff;
-  cursor: pointer;
 `;

@@ -2,12 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import searchBackgroundImage from "../../../assets/search-bar-background.jpeg";
 import WorkerForm from "../../components/WorkerForm";
+import Footer from "../../components/Footer";
 
 const RegisterPage = () => {
   return (
-    <StyledWrapper>
-      <WorkerForm />
-    </StyledWrapper>
+    <>
+      <StyledWrapper>
+        <WorkerForm />
+      </StyledWrapper>
+      <Footer />
+    </>
   );
 };
 
