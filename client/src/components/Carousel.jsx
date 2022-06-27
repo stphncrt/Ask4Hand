@@ -54,7 +54,7 @@ function Carousel({ images }) {
                 sx={{
                   height: "100%",
                   display: "block",
-                  // overflow: "hidden",
+                  //overflow: "hidden",
                   width: "100%",
                 }}
                 src={step}

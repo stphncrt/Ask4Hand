@@ -19,7 +19,7 @@ const App = () => {
       <CssBaseline>
         <ToastContainer
           position="top-center"
-          autoClose={2000}
+          autoClose={300}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

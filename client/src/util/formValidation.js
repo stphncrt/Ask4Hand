@@ -34,3 +34,12 @@ export const RegisterValidationSchema = Yup.object({
     .required("No password provided.")
     .oneOf([Yup.ref("password")], "Passwords does not match"),
 });
+
+export const LoginValidationSchema = Yup.object({
+  email: Yup.string().email("Invalid email address").required("Required"),
+  password: Yup.string()
+    .required("No password provided.")
+    .min(8, "Password is too short - should be 8 chars minimum.")
+    .matches(/[a-z]/, "Password must have a lowercase letter")
+    .matches(/[A-Z]/, "Password must have a uppercase letter"),
+});
