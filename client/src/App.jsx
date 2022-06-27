@@ -12,6 +12,7 @@ import ButtonAppBar from "./components/Nav";
 import { AppProvider } from "./context/AppContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AboutUs from "./pages/AboutUs/AboutUs";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/profilePage" element={<ProfilePage />} />
           <Route path="/user" element={<UserList />} />
           <Route path="/user/create" element={<CreateUser />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
         </Routes>
       </CssBaseline>
     </AppProvider>
