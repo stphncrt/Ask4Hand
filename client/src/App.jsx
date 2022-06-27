@@ -16,35 +16,35 @@ import AboutUs from "./pages/AboutUs/AboutUs";
 import Footer from "./components/Footer";
 
 const App = () => {
-	return (
-		<AppProvider>
-			<CssBaseline>
-				<ToastContainer
-					position="top-center"
-					autoClose={300}
-					hideProgressBar={false}
-					newestOnTop={false}
-					closeOnClick
-					rtl={false}
-					pauseOnFocusLoss
-					draggable
-					pauseOnHover
-				/>
-				<ButtonAppBar />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/register" element={<RegisterPage />} />
-					<Route path="/login" element={<LoginPage />} />
-					<Route path="/searchPage" element={<SearchPage />} />
-					<Route path="/profilePage" element={<ProfilePage />} />
-					<Route path="/user" element={<UserList />} />
-					<Route path="/user/create" element={<CreateUser />} />
-					<Route path="/aboutUs" element={<AboutUs />} />
-				</Routes>
-			</CssBaseline>
-			<Footer />
-		</AppProvider>
-	);
+  return (
+    <AppProvider>
+      <CssBaseline>
+        <ToastContainer
+          position="top-center"
+          autoClose={300}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <ButtonAppBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/searchPage" element={<SearchPage />} />
+          <Route path="/profilePage" element={<ProfilePage />} />
+          <Route path="/user" element={<UserList />} />
+          <Route path="/user/create" element={<CreateUser />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
+        </Routes>
+      </CssBaseline>
+      <Footer />
+    </AppProvider>
+  );
 };
 
 export default App;
