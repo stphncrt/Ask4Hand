@@ -42,7 +42,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <StyledWrapper style={{ height: "calc(100vh - 16.6rem)" }}>
+      <StyledWrapper style={{ minHeight: "calc(100vh - 266px)" }}>
         <Container className={signUpStyles.wrapper} maxWidth="sm">
           <Typography className={signUpStyles.text}>
             Pleaser enter your email and password to login..

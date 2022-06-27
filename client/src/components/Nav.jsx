@@ -10,7 +10,7 @@ import MenuPopupState from "./PopUpMenu";
 
 export default function ButtonAppBar() {
   const { worker } = React.useContext(AppContext);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <AppBar
       position="static"

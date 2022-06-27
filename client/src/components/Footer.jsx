@@ -1,10 +1,12 @@
 import React from "react";
-import { Grid, Typography, Link } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import styled from "styled-components";
+
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -14,7 +16,7 @@ function Footer() {
           <Typography variant="h6" className="title">
             COMPANY
           </Typography>
-          <Link href="" className="link">
+          <Link to="/aboutUs" className="link">
             About us
           </Link>
         </Grid>
@@ -22,13 +24,15 @@ function Footer() {
           <Typography variant="h6" className="title">
             INFO
           </Typography>
-          <Link
+          <a
             href="https://github.com/HackYourFuture/class35-project-zzpers"
+            target="_blank"
+            rel="noreferrer"
             className="link"
           >
             Made with <FavoriteIcon color="error" fontSize="small" /> by
             LastNodeBenders
-          </Link>
+          </a>
         </Grid>
         <Grid item xs={12} md={4} className="section">
           <Typography variant="h6" className="title">
