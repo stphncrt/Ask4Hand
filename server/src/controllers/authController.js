@@ -2,10 +2,10 @@ import Worker from "../models/Worker.js";
 import { logError } from "../util/logging.js";
 import { registerValidation, loginValidation } from "../util/authValidation.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import { generateJwt } from "../util/jwtSign.js";
 
 export const createWorker = async (req, res) => {
-  // validation
+  //Validation
   const { error } = registerValidation(req.body);
   if (error) {
     return res.status(400).json({
@@ -44,9 +44,8 @@ export const createWorker = async (req, res) => {
   });
   try {
     await worker.save();
-    const token = jwt.sign({ id: worker._id }, process.env.TOKEN_KEY, {
-      expiresIn: maxAge,
-    });
+    //Create token
+    const token = generateJwt(worker._id);
     res.cookie("token", token, { httpOnly: true });
     res.status(201).json({
       success: true,
@@ -61,8 +60,6 @@ export const createWorker = async (req, res) => {
     });
   }
 };
-
-const maxAge = 60 * 60;
 
 export const loginWorker = async (req, res) => {
   // validation
@@ -96,9 +93,7 @@ export const loginWorker = async (req, res) => {
   }
 
   //Create token
-  const token = jwt.sign({ id: worker._id }, process.env.TOKEN_KEY, {
-    expiresIn: maxAge,
-  });
+  const token = generateJwt(worker._id);
   res.cookie("token", token, { httpOnly: true });
   delete worker.password;
   res.status(200).json({
