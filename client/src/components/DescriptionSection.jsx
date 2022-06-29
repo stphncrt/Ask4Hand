@@ -40,7 +40,7 @@ function DescriptionSection() {
           of our services. Worrying about cleaning is at the bottom of your
           priority list, but the top of ours. Our cleaners are trained to help
           provide the best version of your space by focusing on the little
-          details..
+          details...
         </Typography>
       </Grid>
     </Grid>
