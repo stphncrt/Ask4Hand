@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { getData, postData, putData } from "../util/fetchData";
 
 const AppContext = createContext();
 
@@ -19,9 +19,7 @@ export const AppProvider = ({ children }) => {
   const getTitles = async (endpoint) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(
-        `${process.env.BASE_SERVER_URL}/api${endpoint}`
-      );
+      const response = await getData(endpoint);
       setTitles(response.data.result);
     } catch (err) {
       setError(err.message);
@@ -33,9 +31,7 @@ export const AppProvider = ({ children }) => {
   const getCategories = async (endpoint) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(
-        `${process.env.BASE_SERVER_URL}/api${endpoint}`
-      );
+      const response = await getData(endpoint);
       setCategories(response.data.result);
     } catch (err) {
       setError(err.message);
@@ -47,9 +43,7 @@ export const AppProvider = ({ children }) => {
   const logoutWorker = async (endpoint) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(
-        `${process.env.BASE_SERVER_URL}/api${endpoint}`
-      );
+      const response = await getData(endpoint);
       setWorker(response.data.result);
       toast.success(response?.data?.msg);
       navigate("/");
@@ -64,11 +58,7 @@ export const AppProvider = ({ children }) => {
   const postWorker = async (endpoint, data) => {
     try {
       setIsLoading(true);
-      const response = await axios.post(
-        `${process.env.BASE_SERVER_URL}/api${endpoint}`,
-        data,
-        { withCredentials: true }
-      );
+      const response = await postData(endpoint, data);
       setWorker(response?.data?.result?.worker);
       toast.success(response?.data?.msg);
       setTimeout(() => {
@@ -85,11 +75,7 @@ export const AppProvider = ({ children }) => {
   const updateWorker = async (endpoint, data) => {
     try {
       setIsLoading(true);
-      const response = await axios.put(
-        `${process.env.BASE_SERVER_URL}/api${endpoint}`,
-        data,
-        { withCredentials: true }
-      );
+      const response = await putData(endpoint, data);
       setWorker(response?.data?.result);
       toast.success(response?.data?.msg);
       setTimeout(() => {
@@ -106,11 +92,8 @@ export const AppProvider = ({ children }) => {
   const getWorkers = async (endpoint) => {
     try {
       setIsLoading(true);
-      const response = await axios.post(
-        `${process.env.BASE_SERVER_URL}/api/worker/${endpoint}`,
-        { occupationIds, city }
-      );
-      await setWorkerList(response.data.result);
+      const response = await postData(endpoint, { occupationIds, city });
+      setWorkerList(response.data.result);
     } catch (err) {
       setError(err.message);
     } finally {

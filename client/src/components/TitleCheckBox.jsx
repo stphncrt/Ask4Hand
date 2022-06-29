@@ -32,7 +32,7 @@ export default function CheckboxLabels() {
   };
 
   const handleSearch = () => {
-    getWorkers("/filter");
+    getWorkers("/worker/filter");
   };
 
   useEffect(() => {
