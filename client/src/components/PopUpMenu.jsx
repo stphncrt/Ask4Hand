@@ -2,6 +2,7 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { styled } from "@mui/material/styles";
 import {
   usePopupState,
   bindTrigger,
@@ -17,9 +18,9 @@ export default function MenuPopupState() {
   const popupState = usePopupState({ variant: "popover", popupId: "demoMenu" });
   return (
     <div>
-      <Button variant="contained" {...bindTrigger(popupState)}>
+      <StyledButton variant="contained" {...bindTrigger(popupState)}>
         {worker?.firstName} {worker?.lastName} <KeyboardArrowDownIcon />{" "}
-      </Button>
+      </StyledButton>
       <Menu {...bindMenu(popupState)}>
         <MenuItem
           onClick={() => {
@@ -41,3 +42,10 @@ export default function MenuPopupState() {
     </div>
   );
 }
+
+export const StyledButton = styled(Button)`
+  @media screen and (max-width: 600px) {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+`;
