@@ -12,7 +12,7 @@ export default function ButtonAppBar() {
   const { worker } = React.useContext(AppContext);
   const navigate = useNavigate();
   return (
-    <AppBar
+    <StyledAppBar
       position="static"
       sx={{
         backgroundColor: "#f1faee",
@@ -21,7 +21,7 @@ export default function ButtonAppBar() {
       }}
     >
       <Toolbar>
-        <Typography
+        <StyledTypography
           color="primary"
           variant="h4"
           component="div"
@@ -29,7 +29,7 @@ export default function ButtonAppBar() {
           onClick={() => navigate("/")}
         >
           Ask4Hand
-        </Typography>
+        </StyledTypography>
         {!worker ? (
           <>
             <StyledButton to="/register" variant="outlined">
@@ -43,7 +43,7 @@ export default function ButtonAppBar() {
           <MenuPopupState />
         )}
       </Toolbar>
-    </AppBar>
+    </StyledAppBar>
   );
 }
 
@@ -56,5 +56,18 @@ export const StyledButton = styled(Link)`
 
   :hover {
     color: #4c91db;
+  }
+`;
+
+export const StyledAppBar = styled(AppBar)`
+  @media screen and (max-width: 600px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+`;
+
+export const StyledTypography = styled(Typography)`
+  @media screen and (max-width: 600px) {
+    font-size: 1.8rem;
   }
 `;

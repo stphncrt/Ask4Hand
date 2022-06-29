@@ -25,7 +25,7 @@ function SearchPage() {
 
   useEffect(() => {
     getTitles("/occupations");
-    getWorkers("/filter");
+    getWorkers("/worker/filter");
   }, []);
 
   const workersPerPage = 6;
