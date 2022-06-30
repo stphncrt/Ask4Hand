@@ -38,6 +38,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "public", "index.html"),
+      favicon: "public/favicon.jpg",
     }),
     // All variables in our .env should be mentioned here
     new webpack.EnvironmentPlugin({
