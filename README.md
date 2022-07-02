@@ -8,7 +8,7 @@ This is the final project for the HackYourFuture curriculum we did as a class us
 Ask4Hand is the app you want. Find who you need easily. Make a comparison between freelancers and contact the ones you want directly.
 Or, as a freelancer, do you want your customers to find you easily and contact you? All you have to do is sign up and that is all!
 
-`[Click here for the Demo version](https://c35-zzpers.herokuapp.com)`
+[Click here for the Demo version](https://c35-zzpers.herokuapp.com)
 
 ## 1. Setup
 
