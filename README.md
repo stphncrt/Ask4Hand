@@ -1,4 +1,4 @@
-`TODO: Add a nice screenshot of the app!`
+![Project showcase](./ask4hand.gif)
 
 # Class 35 final project
 
@@ -8,7 +8,16 @@ This is the final project for the HackYourFuture curriculum we did as a class us
 Ask4Hand is the app you want. Find who you need easily. Make a comparison between freelancers and contact the ones you want directly.
 Or, as a freelancer, do you want your customers to find you easily and contact you? All you have to do is sign up and that is all!
 
-[Click here for the Demo version](https://c35-zzpers.herokuapp.com)
+## Demo
+
+Online deployment of this project is available at [Ask4Hand](https://c35-zzpers.herokuapp.com)
+
+You can use the below credentials to test the app as a freelancer persona.
+
+```code
+email: isabelle@gmail.com
+password: 1234Test
+```
 
 ## 1. Setup
 
@@ -126,7 +135,7 @@ For more information on how these work together including the automatic deployme
 - `jest` || To run our tests and coverage. See [docs](https://jestjs.io/)
 - `jest-fetch-mock` || To mock out the backend for our testing purposes. See [docs](https://github.com/jefflau/jest-fetch-mock#readme)
 - `prop-types` || To type-check our components. See [docs](https://github.com/facebook/prop-types)
-- `material-ui` || To create our UI. See [docs]https://mui.com/)
+- `material-ui` || To create our UI. See [docs]<https://mui.com/>)
 - `@react-google-maps/api` || To use google MAP API in our app. See [docs](https://www.npmjs.com/package/@react-google-maps/api)
 `axios` || For all fetch operations to get data from API's. See [docs](https://github.com/axios/axios)
 `formik` || To manage forms with complex validation. See [docs](https://formik.org)
@@ -178,7 +187,6 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
 ## 6. Contact
 
 You can contact with any of us.
@@ -192,10 +200,3 @@ You can contact with any of us.
 `Ensar` ||  [Email](doganermansur@icloud.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-
-
-
-
