@@ -42,10 +42,13 @@ function Carousel({ images }) {
                 sx={{
                   height: "100%",
                   display: "block",
-                  //overflow: "hidden",
                   width: "100%",
                 }}
-                src={step}
+                src={
+                  step === ""
+                    ? "https://www.feednavigator.com/var/wrbm_gb_food_pharma/storage/images/9/2/8/5/235829-6-eng-GB/Feed-Test-SIC-Feed-20142.jpg"
+                    : step
+                }
                 alt={index}
               />
             ) : null}

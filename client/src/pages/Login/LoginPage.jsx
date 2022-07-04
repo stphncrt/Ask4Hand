@@ -24,7 +24,13 @@ const LoginPage = () => {
   });
 
   return (
-    <StyledWrapper>
+    <StyledWrapper
+      style={{
+        display: "flex",
+        alignItems: "center",
+        minHeight: "calc(100vh - 266px)",
+      }}
+    >
       <StyledContainer>
         <Typography align="center" m={2} variant="h6">
           Pleaser enter your email and password to login..
