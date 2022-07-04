@@ -47,7 +47,7 @@ client
 |   └── __testUtils__
 |   └── api
 |   └── components
-|   └── hooks
+|   └── context
 |   └── pages
 |       └── __tests__
 |       └── components

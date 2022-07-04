@@ -1,8 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import CreateUser from "./pages/User/CreateUser";
-import UserList from "./pages/User/UserList";
 import { CssBaseline } from "@mui/material";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
@@ -37,8 +35,6 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/searchPage" element={<SearchPage />} />
           <Route path="/profilePage" element={<ProfilePage />} />
-          <Route path="/user" element={<UserList />} />
-          <Route path="/user/create" element={<CreateUser />} />
           <Route path="/aboutUs" element={<AboutUs />} />
         </Routes>
       </CssBaseline>
