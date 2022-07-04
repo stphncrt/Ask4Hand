@@ -15,7 +15,7 @@ Online deployment of this project is available at [Ask4Hand](https://c35-zzpers.
 You can use the below credentials to test the app as a freelancer persona.
 
 ```code
-email: isabelle@gmail.com
+email: johndoe@gmail.com
 password: 1234Test
 ```
 
@@ -47,7 +47,7 @@ client
 |   └── __testUtils__
 |   └── api
 |   └── components
-|   └── hooks
+|   └── context
 |   └── pages
 |       └── __tests__
 |       └── components

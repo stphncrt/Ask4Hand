@@ -9,6 +9,7 @@ import {
   InputLabel,
   Typography,
 } from "@mui/material";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { RegisterValidationSchema } from "../util/formValidation";
 import AppContext from "../context/AppContext";
 import { getLatLng } from "../api/getlatlng";
@@ -68,6 +69,10 @@ const WorkerForm = () => {
 
   const addImageInputField = () => {
     setImages([...images, ""]);
+  };
+
+  const removeImageInputField = (item) => {
+    setImages(images.filter((image) => image !== item));
   };
 
   const handleImageUrlChange = (index, event) => {
@@ -175,15 +180,42 @@ const WorkerForm = () => {
             />
           </Grid>
           {images.map((item, index) => (
-            <Grid item xs={12} key={index}>
-              <TextField
-                label="Image Url"
-                variant="outlined"
-                fullWidth
-                value={item}
-                onChange={(event) => handleImageUrlChange(index, event)}
-                name="imageUrl"
-              />
+            <Grid
+              container
+              spacing={3}
+              justifyContent="space-between"
+              alignItems="center"
+              sx={{
+                m: 0,
+              }}
+              key={index}
+            >
+              <Grid
+                item
+                xs={images.length > 1 && index > 0 ? 9 : 12}
+                md={images.length > 1 && index > 0 ? 10 : 12}
+              >
+                <TextField
+                  label="Image Url"
+                  variant="outlined"
+                  value={item}
+                  sx={{ width: 1 }}
+                  onChange={(event) => handleImageUrlChange(index, event)}
+                  name="imageUrl"
+                />
+              </Grid>
+              {images.length > 1 && index > 0 && (
+                <Grid item xs={3} md={2}>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    sx={{ maxWidth: "2rem" }}
+                    onClick={() => removeImageInputField(item)}
+                  >
+                    <RemoveIcon color="light" />
+                  </Button>
+                </Grid>
+              )}
             </Grid>
           ))}
           <Grid item xs={12}>
@@ -192,7 +224,7 @@ const WorkerForm = () => {
               color="primary"
               onClick={addImageInputField}
             >
-              Add Image
+              +
             </Button>
           </Grid>
           <Grid item xs={12}>
@@ -325,12 +357,13 @@ export const StyledContainer = styled.div`
   background-color: rgb(241, 250, 238);
   max-width: 60%;
   margin: 0 auto;
+
   @media screen and (max-width: 1024px) {
     max-width: 80%;
   }
+
   @media screen and (max-width: 600px) {
     padding: 1rem;
-
     background-color: #fff;
     max-width: 100%;
     border: 1px solid;
