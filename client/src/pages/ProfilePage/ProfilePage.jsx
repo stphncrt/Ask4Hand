@@ -24,18 +24,6 @@ const ProfilePage = () => {
     (title) => title._id === worker?.occupationId
   )?.name;
 
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 600,
-    height: 500,
-    bgColor: "background.paper",
-    overflow: "scroll",
-    boxShadow: 24,
-  };
-
   return (
     <>
       <Box sx={{ flexGrow: 1, padding: "2rem" }}>
@@ -138,10 +126,9 @@ const ProfilePage = () => {
           onClose={handleClose}
           aria-labelledBy="modal-modal-title"
           aria-describedby="modal-modal-description"
+          sx={{ overflowY: "scroll" }}
         >
-          <Box sx={style}>
-            <WorkerForm />
-          </Box>
+          <WorkerForm />
         </Modal>
       </Box>
     </>
