@@ -189,14 +189,9 @@ Don't forget to give the project a star! Thanks again!
 
 ## 6. Contact
 
-You can contact with any of us.
+If you have any futher question please contact me.
 
-`Ertugrul` ||  [Email](ertugrulaktn@gmail.com)
-
-`Huseyin` ||  [Email](cretestephen@gmail.com)
-
-`Aykut` ||  [Email](aykutuludag26@gmail.com)
-
-`Ensar` ||  [Email](doganermansur@icloud.com)
+ [Email](cretestephen@gmail.com) 
+ [LinkedIn](https://www.linkedin.com/in/stephen-crete-6509731b4)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
